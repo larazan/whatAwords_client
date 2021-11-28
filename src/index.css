@@ -1,6 +1,489 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  @responsive {
+    .scrollbars-hidden::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+@font-face {
+  font-family: 'Mont-Regular';
+  src: local('Mont-Regular'), url(./fonts/Mont-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Mont-Bold';
+  src: local('Mont-Bold'), url(./fonts/Mont-Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Mont-Heavy';
+  src: local('Mont-Heavy'), url(./fonts/Mont-Heavy.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Aelten';
+  src: local('Aelten'), url(./fonts/Aelten.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Alphakind';
+  src: local('Alphakind'), url(./fonts/Alphakind.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Amellis';
+  src: local('Amellis'), url(./fonts/Amellis-Path.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Mollusca';
+  src: local('Mollusca'), url(./fonts/Baby-Mollusca.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Bajurie';
+  src: local('Bajurie'), url(./fonts/Bajurie.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Banda-Aceh';
+  src: local('Banda-Aceh'), url(./fonts/Banda-Aceh.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Barokah';
+  src: local('Barokah'), url(./fonts/Barokah.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Bitcrusher';
+  src: local('Bitcrusher'), url(./fonts/Bitcrusher.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Blue_highway_cd';
+  src: local('Blue_highway_cd'), url(./fonts/Blue_highway_cd.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Borg';
+  src: local('Borg'), url(./fonts/Borg.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Bright-Dreams';
+  src: local('Bright-Dreams'), url(./fonts/Bright-Dreams.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Browie';
+  src: local('Browie'), url(./fonts/Browie.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Chandella';
+  src: local('Chandella'), url(./fonts/Chandella.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Chinese-Rocks';
+  src: local('Chinese-Rocks'), url(./fonts/Chinese-Rocks.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Cokobi';
+  src: local('Cokobi'), url(./fonts/Cokobi.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Colombia';
+  src: local('Colombia'), url(./fonts/Colombia.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'ConcreteWall';
+  src: local('ConcreteWall'), url(./fonts/ConcreteWall.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Coolvetica';
+  src: local('Coolvetica'), url(./fonts/Coolvetica.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Dakwart';
+  src: local('Dakwart'), url(./fonts/Dakwart.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'DAGOCA';
+  src: local('DAGOCA'), url(./fonts/DAGOCA.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Dealerplate-California';
+  src: local('Dealerplate-California'), url(./fonts/Dealerplate-California.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Dream-Orphans';
+  src: local('Dream-Orphans'), url(./fonts/Dream-Orphans.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Elliane-Regular';
+  src: local('Elliane-Regular'), url(./fonts/Elliane-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Engebrechtre';
+  src: local('Engebrechtre'), url(./fonts/Engebrechtre.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'ENGINE';
+  src: local('ENGINE'), url(./fonts/ENGINE.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Foo';
+  src: local('Foo'), url(./fonts/Foo.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Gnuolane';
+  src: local('Gnuolane'), url(./fonts/Gnuolane.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Gratise';
+  src: local('Gratise'), url(./fonts/Gratise.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Groomer';
+  src: local('Groomer'), url(./fonts/Groomer.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Halmera';
+  src: local('Halmera'), url(./fonts/Halmera.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'HappyGarden';
+  src: local('HappyGarden'), url(./fonts/HappyGarden.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Hellohowareyou';
+  src: local('Hellohowareyou'), url(./fonts/Hellohowareyou.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Helsinki';
+  src: local('Helsinki'), url(./fonts/Helsinki.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Inter-Regular';
+  src: local('Inter-Regular'), url(./fonts/Inter-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Jreeng';
+  src: local('Jreeng'), url(./fonts/Jreeng.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'JustSmile';
+  src: local('JustSmile'), url(./fonts/JustSmile.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Kaylafiz';
+  src: local('Kaylafiz'), url(./fonts/Kaylafiz.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Kimberley';
+  src: local('Kimberley'), url(./fonts/Kimberley.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'LazySunday';
+  src: local('LazySunday'), url(./fonts/LazySunday.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Leorio';
+  src: local('Leorio'), url(./fonts/Leorio.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Limejuice';
+  src: local('Limejuice'), url(./fonts/Limejuice.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Lovetle';
+  src: local('Lovetle'), url(./fonts/Lovetle.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Lynoselt';
+  src: local('Lynoselt'), url(./fonts/Lynoselt.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'MatSaleh';
+  src: local('MatSaleh'), url(./fonts/MatSaleh.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'MelocheBook';
+  src: local('MelocheBook'), url(./fonts/MelocheBook.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'MightyKingdom';
+  src: local('MightyKingdom'), url(./fonts/MightyKingdom.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Monofonto';
+  src: local('Monofonto'), url(./fonts/Monofonto.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Morganite-Light';
+  src: local('Morganite-Light'), url(./fonts/Morganite-Light.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'MorningMiow';
+  src: local('MorningMiow'), url(./fonts/MorningMiow.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Mounets';
+  src: local('Mounets'), url(./fonts/Mounets.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'NoVirus';
+  src: local('NoVirus'), url(./fonts/NoVirus.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'NugoSansLight';
+  src: local('NugoSansLight'), url(./fonts/NugoSansLight.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Oaklevin';
+  src: local('Oaklevin'), url(./fonts/Oaklevin.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Ontel';
+  src: local('Ontel'), url(./fonts/Ontel.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Peace';
+  src: local('Peace'), url(./fonts/Peace.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'PeachyRose';
+  src: local('PeachyRose'), url(./fonts/PeachyRose.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Pouline';
+  src: local('Pouline'), url(./fonts/Pouline.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Pretender';
+  src: local('Pretender'), url(./fonts/Pretender.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'QuickCount';
+  src: local('QuickCount'), url(./fonts/QuickCount.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Rakesly';
+  src: local('Rakesly'), url(./fonts/Rakesly.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Rennoya';
+  src: local('Rennoya'), url(./fonts/Rennoya.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'ROLAND';
+  src: local('ROLAND'), url(./fonts/ROLAND.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Saolice';
+  src: local('Saolice'), url(./fonts/Saolice.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'SimpalaExtended';
+  src: local('SimpalaExtended'), url(./fonts/SimpalaExtended.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'SingleSleeve';
+  src: local('SingleSleeve'), url(./fonts/SingleSleeve.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'StraightlerRegular';
+  src: local('StraightlerRegular'), url(./fonts/StraightlerRegular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'SweetSomeday';
+  src: local('SweetSomeday'), url(./fonts/SweetSomeday.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Tahu';
+  src: local('Tahu'), url(./fonts/Tahu.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Thruster-Regular';
+  src: local('Thruster-Regular'), url(./fonts/Thruster-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'VirusKiller';
+  src: local('VirusKiller'), url(./fonts/VirusKiller.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'WallabysJunior';
+  src: local('WallabysJunior'), url(./fonts/WallabysJunior.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'WanitaCantik';
+  src: local('WanitaCantik'), url(./fonts/WanitaCantik.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'ZZYZX';
+  src: local('ZZYZX'), url(./fonts/ZZYZX.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'WhereTheCookies';
+  src: local('WhereTheCookies'), url(./fonts/WhereTheCookies.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'WKSimple';
+  src: local('WKSimple'), url(./fonts/WKSimple.ttf) format('truetype');
+}
+
+
+@font-face {
+  font-family: 'Arvo-Regular';
+  src: local('Arvo-Regular'), url(./fonts/Arvo-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Cinzel-Regular';
+  src: local('Cinzel-Regular'), url(./fonts/Cinzel-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Domine-Regular';
+  src: local('Domine-Regular'), url(./fonts/Domine-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'LiberationSerif-Regular';
+  src: local('LiberationSerif-Regular'), url(./fonts/LiberationSerif-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Lustria-Regular';
+  src: local('Lustria-Regular'), url(./fonts/Lustria-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Mohave-Regular';
+  src: local('Mohave-Regular'), url(./fonts/Mohave-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Montserrat-Regular';
+  src: local('Montserrat-Regular'), url(./fonts/Montserrat-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'NotoSans-Regular';
+  src: local('NotoSans-Regular'), url(./fonts/NotoSans-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Promesh_Regular';
+  src: local('Promesh_Regular'), url(./fonts/Promesh_Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Raleway-Regular';
+  src: local('Raleway-Regular'), url(./fonts/Raleway-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Rubik-Regular';
+  src: local('Rubik-Regular'), url(./fonts/Rubik-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Zaio';
+  src: local('Zaio'), url(./fonts/Zaio.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Antonio-Regular';
+  src: local('Antonio-Regular'), url(./fonts/Antonio-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Bitter-Regular';
+  src: local('Bitter-Regular'), url(./fonts/Bitter-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'CrimsonText-Roman';
+  src: local('CrimsonText-Roman'), url(./fonts/CrimsonText-Roman.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'COBAISSI';
+  src: local('COBAISSI'), url(./fonts/COBAISSI.ttf) format('truetype');
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Mont-Bold', 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -10,4 +493,205 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.my-masonry-grid {
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  margin-left: -30px; /* gutter size offset */
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 30px; /* gutter size */
+  background-clip: padding-box;
+}
+
+/* Style your items */
+.my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+  /* background: grey; */
+  margin-bottom: 30px;
+}
+
+.overlay {
+  background: linear-gradient(0deg, rgb(41, 39, 39), transparent);
+}
+
+.bg-gradient-jams {
+  background: #D1036F linear-gradient(91.78deg, #D1036F 2.57%, #B6005F 96.33%);
+}
+
+.bg-gradient-pink-orange,
+.hover\:bg-gradient-pink-orange:hover,
+.hover\:bg-gradient-pink-orange:focus {
+  background: #E7017A linear-gradient(91.78deg, #E7017A 2.57%, #DF4A1F 96.33%);
+}
+
+.bg-gradient-blue-green {
+  background: #0090CA linear-gradient(101.87deg, #0090CA 0%, #00BFAD 105.55%);
+}
+
+.bg-gradient-card-sunrise {
+  --tw-gradient-stops: #F0047F 0%, #FC814A 100%;
+}
+
+.bg-gradient-card-blue {
+  --tw-gradient-stops: #04A2DD 0%, #4FF3EA 100%;
+}
+
+.bg-gradient-card-seafoam {
+  --tw-gradient-stops: #88F9ED 0%, #00FFB2 100%;
+}
+
+.bg-gradient-card-gold {
+  --tw-gradient-stops: #FFC803 0%, #FC814A 100%;
+}
+
+/*
+  CTA links
+*/
+
+a.cta:link, a.cta:visited {
+  display: inline-block;
+}
+
+a.cta:link, a.cta:visited {
+  --tw-bg-opacity: 1;
+  background-color: rgba(209, 3, 111, var(--tw-bg-opacity));
+}
+
+a.cta:link, a.cta:visited {
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+a.cta:link, a.cta:visited {
+  border-radius: 9999px;
+}
+
+a.cta:link, a.cta:visited {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+a.cta:link, a.cta:visited {
+  font-weight: 600;
+}
+
+a.cta:link, a.cta:visited {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+a.cta:link, a.cta:visited {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+a.cta:link, a.cta:visited {
+  border-style: none;
+}
+
+a.cta:link, a.cta:visited {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+a.cta:link, a.cta:visited {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+a.cta:hover, a.cta:focus {
+  --tw-bg-opacity: 1;
+  background-color: rgba(223, 74, 31, var(--tw-bg-opacity));
+}
+
+a.cta:hover,
+a.cta:focus {
+  box-shadow: 0px 3px 15px rgba(241, 86, 77, 0.6);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 24px;
+  justify-items: space-evenly;
+  max-width: 1320px;
+  margin: auto;
+  overflow-y: auto;
+  padding: 0 12px;
+}
+
+.image {
+  margin-bottom: 24px;
+}
+
+.unsplashImage {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+}
+
+.vignate {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.vignate:hover {
+  opacity: 1;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.65) 0%,
+      rgba(0, 0, 0, 0.1) 35%,
+      rgba(0, 0, 0, 0.1) 67%,
+      rgba(0, 0, 0, 0.65) 100%
+    );
+}
+
+.credit {
+  display: flex;
+	align-items: center;
+	overflow: hidden;
+  position: absolute;
+	bottom: 20px;
+	left: 10px;
+	width: 100%;
+}
+
+.credit-photo {
+  border-radius: 50%;
+	margin: 0 10px;
+}
+
+.credit-name {
+  font-size: 15px;
+	font-weight: 600;
+  color: white;
+	text-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+	opacity: 0.8;
+	transition: 0.1s;
+}
+
+.credit-name:hover {
+  opacity: 1;
+}
+
+.htmlToImageVis {
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  border: solid 1px black;
 }
