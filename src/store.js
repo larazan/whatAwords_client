@@ -38,6 +38,7 @@ import {
   wordUnlikeReducer,
   wordCollectReducer,
   wordsByUserReducer,
+  wordRandReducer,
 } from './reducers/words_reducer'
 
 import {
@@ -88,6 +89,7 @@ const reducer = combineReducers({
   wordUnlike: wordUnlikeReducer,
   wordCollect: wordCollectReducer,
   wordsByUser: wordsByUserReducer,
+  wordRand: wordRandReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,

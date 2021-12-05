@@ -12,15 +12,15 @@ import imgLogo from "../../assets/Fraspi-preview.png";
 
 const Navbar = () => {
   const [catOpen, setCatOpen] = useState(false)
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState('ratri');
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  if (userInfo) {
-    setUserName(userInfo.user.name);
-  }
+  // if (userInfo) {
+  //   setUserName(userInfo.user.name);
+  // }
   
   const logoutHandler = () => {
     dispatch(logout());

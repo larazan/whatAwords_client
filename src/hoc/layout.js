@@ -14,6 +14,7 @@ class Layout extends Component {
                 <div className="page_container container mx-auto min-h-screen">
                     {this.props.children}
                 </div>
+                <div id="snackbar-fixed-container" ></div>
                 <Footer/>
                 <ScrollToBottom />
                 <ScrollToTop />

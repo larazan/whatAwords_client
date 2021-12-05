@@ -46,6 +46,9 @@ import {
     WORDS_BY_USER_REQUEST,
     WORDS_BY_USER_SUCCESS,
     WORDS_BY_USER_FAIL,
+    WORD_RANDOM_REQUEST,
+    WORD_RANDOM_SUCCESS,
+    WORD_RANDOM_FAIL,
 } from '../actions/types'
 
 export const wordsSearchReducer = (state = { words: [] }, action) => {
@@ -290,6 +293,23 @@ export const wordCollectReducer = (state = {}, action) => {
       return { loading: false, error: action.payload }  
     default:
       return state
+  }
+}
+
+export const wordRandReducer = (state = { word: [] }, action) => {
+  switch (action.type) {
+    case WORD_RANDOM_REQUEST:
+        return { loading: true, word: [] }
+    case WORD_RANDOM_SUCCESS:
+        return { 
+          loading: false, 
+          word: action.payload.word,
+          author: action.payload.author,
+        }    
+    case WORD_RANDOM_FAIL:
+        return { loading: false, error: action.payload }
+    default:
+        return state;
   }
 }
 

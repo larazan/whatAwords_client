@@ -45,6 +45,9 @@ import {
     WORDS_BY_USER_REQUEST,
     WORDS_BY_USER_SUCCESS,
     WORDS_BY_USER_FAIL,
+    WORD_RANDOM_REQUEST,
+    WORD_RANDOM_SUCCESS,
+    WORD_RANDOM_FAIL,
 } from './types';
 import { logout } from './user_actions'
 
@@ -443,5 +446,25 @@ export const collectWord = (id) => async (dispatch, getState) => {
             payload: error.response && error.response.data.message
                 ? error.response.data.message : error.message,
           })
+    }
+}
+
+
+export const getRandWord = () => async (dispatch) => {
+    try {
+        dispatch({ type: WORD_RANDOM_REQUEST });
+
+        const { data } = await axios.get(`${WORDS_SERVER}/r/random`)
+
+        dispatch ({
+            type: WORD_RANDOM_SUCCESS,
+            payload: data
+        })
+    } catch (error) {
+        dispatch({
+            type: WORD_RANDOM_FAIL,
+            payload: error.response && error.response.data.message
+            ? error.response.data.message : error.message,
+        })
     }
 }
