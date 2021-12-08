@@ -11,9 +11,14 @@ import {
   collectWord,
 } from "../actions/words_actions";
 import { followUser, unfollowUser } from "../actions/user_actions";
+import Avatar from 'react-avatar';
 
 import Message from "../components/Message";
 import ModalLogin from "../components/ModalLogin";
+
+import { showSuccessMessage, showErrorMessage } from '../components/utils/helpers';
+import { fontFamilies } from '../assets/data/fontFamilies';
+import { gradients } from '../assets/data/gradients';
 
 const Detail = ({ match }) => {
   const quoId = match.params.id;
@@ -70,93 +75,10 @@ const Detail = ({ match }) => {
     window.scrollTo(0, 0);
   }, [dispatch, match, successWordLike]);
 
-  const grads = [
-    "bg-gradient-card-sunrise",
-    "bg-gradient-card-blue",
-    "bg-gradient-card-seafoam",
-    "bg-gradient-card-gold",
-  ];
-
   const randomGrad = () => {
-    let mat = Math.floor(Math.random() * grads.length);
-    return grads[mat];
+    let mat = Math.floor(Math.random() * gradients.length);
+    return gradients[mat]['tail'];
   };
-
-  const fontFamilies = [
-    "Aelten",
-    "Alphakind",
-    "Amellis",
-    "Mollusca",
-    "Bajurie",
-    "Banda-Aceh",
-    "Bitcrusher",
-    "Blue_highway_cd",
-    "Borg",
-    "Bright-Dreams",
-    "Chandella",
-    "Chinese-Rocks",
-    "Cokobi",
-    "Colombia",
-    "ConcreteWall",
-    "Coolvetica",
-    "Dakwart",
-    "DAGOCA",
-    "Dealerplate-California",
-    "Dream-Orphans",
-    "Elliane-Regular",
-    "Engebrechtre",
-    "ENGINE",
-    "Foo",
-    "Gnuolane",
-    "Gratise",
-    "Groomer",
-    "Halmera",
-    "HappyGarden",
-    "Hellohowareyou",
-    "Helsinki",
-    "Inter-Regular",
-    "Jreeng",
-    "JustSmile",
-    "Kaylafiz",
-    "Kimberley",
-    "LazySunday",
-    "Leorio",
-    "Limejuice",
-    "Lovetle",
-    "Lynoselt",
-    "MatSaleh",
-    "MelocheBook",
-    "MightyKingdom",
-    "Monofonto",
-    "Morganite-Light",
-    "MorningMiow",
-    "Mounets",
-    "NoVirus",
-    "NugoSansLight",
-    "Oaklevin",
-    "Ontel",
-    "Peace",
-    "PeachyRose",
-    "Pouline",
-    "Pretender",
-    "QuickCount",
-    "Rakesly",
-    "Rennoya",
-    "ROLAND",
-    "Saolice",
-    "SimpalaExtended",
-    "SingleSleeve",
-    "StraightlerRegular",
-    "SweetSomeday",
-    "Tahu",
-    "Thruster-Regular",
-    "VirusKiller",
-    "WallabysJunior",
-    "WanitaCantik",
-    "ZZYZX",
-    "WhereTheCookies",
-    "WKSimple",
-  ];
 
   const randomFamily = () => {
     let mat = Math.floor(Math.random() * fontFamilies.length);
@@ -230,13 +152,11 @@ const Detail = ({ match }) => {
     htmlToImage.toPng(data).then((dataUrl) => {
       saveAs(dataUrl, `${quoId}.png`);
     });
+    showSuccessMessage("success", "yeah you download it!");
   };
 
   const onCopyText = () => {
-    setIsCopied(true);
-    setTimeout(() => {
-      setIsCopied(false);
-    }, 1000);
+    showSuccessMessage("success", "yeah you copy it!");
   };
 
   return (
@@ -251,11 +171,12 @@ const Detail = ({ match }) => {
             <div className="flex flex-wrap -mt-8 md:-mt-0 lg:-mt-0 px-5 py-3 items-center justify-between">
               <div className="flex inline-flex2 space-x-4 py-6">
                 <div className="flex items-center inline-flex space-x-1 ">
-                  <img
+                <Avatar name={createdBy} size="60" round={true} className="flex items-center justify-center shadow-xl rounded-full w-12 h-12 align-middle border-none sm:w-20 lg:w-60" />
+                  {/* <img
                     className="h-12 w-12 rounded-full flex items-center justify-center"
                     src="https://images.unsplash.com/profile-1637914159560-54b148d8e45eimage?dpr=1&auto=format&fit=crop&w=32&h=32&q=60&crop=faces&bg=fff 1x, https://images.unsplash.com/profile-1637914159560-54b148d8e45eimage?dpr=2&auto=format&fit=crop&w=32&h=32&q=60&crop=faces&bg=fff 2x"
                     alt="user"
-                  />
+                  /> */}
                   <div className="block place-self-center px-2 text-sm text-gray-600 font-light capitalize ">
                     {createdBy}
                     <br />
@@ -405,7 +326,7 @@ const Detail = ({ match }) => {
                   {/*  */}
                   <div className="p-4 cursor-pointer">
                     <div
-                      className={`flex rounded-lg w-full h-3/6 bg-gradient-to-b ${randomGrad()} p-10 md:p-12 lg:p-16 flex-col`}
+                      className={`flex rounded-lg w-full h-3/6 ${randomGrad()} p-10 md:p-12 lg:p-16 flex-col`}
                       id="target-donlot"
                     >
                       <div className="flex-grow w-full">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getCategories } from "../../actions/category_actions";
@@ -55,7 +55,7 @@ const Filter = () => {
                 <a
                     href="#"
                     key={index}
-                    className="font-medium text-gray-800 whitespace-nowrap"
+                    className="font-medium text-gray-800 whitespace-nowrap capitalize"
                 >
                 {category.name}
                 </a>

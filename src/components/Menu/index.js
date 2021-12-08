@@ -91,18 +91,29 @@ const Menu = ({ catOpen, catToggle }) => {
                 >
                   Popular Searches
                 </a>
-                <a
-                  href="#"
-                  className="block text-sm font-semibold text-gray-800 uppercase whitespace-nowrap px-8 py-4 border-b"
-                >
-                  Blog
-                </a>
-                <a
-                  href="#"
-                  className="block text-sm font-light whitespace-nowrap px-8 py-4 border-b"
-                >
-                  FAQ
-                </a>
+                <Link to="/blogs" onClick={catToggle}>
+                  <div className="flex justify-between px-8 py-4 border-b">
+                    <div className="flex">
+                      <div
+                        className="block text-sm font-semibold text-gray-800 uppercase whitespace-nowrap "
+                      >
+                        Blog
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+                <Link to="/faq" onClick={catToggle}>
+                  <div className="flex justify-between px-8 py-4 border-b">
+                    <div className="flex">
+                      <div
+                        className="block text-sm font-semibold text-gray-800 uppercase whitespace-nowrap "
+                      >
+                        FAQ
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+                
                 <a
                   href="#"
                   className="block text-sm font-light whitespace-nowrap px-8 py-4 border-b"

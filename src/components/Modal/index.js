@@ -11,6 +11,7 @@ import {
   collectWord,
 } from "../../actions/words_actions";
 import { followUser, unfollowUser } from "../../actions/user_actions";
+import Avatar from 'react-avatar';
 
 import Message from "../Message";
 import ModalLogin from "../ModalLogin";
@@ -268,11 +269,12 @@ const Modal = () => {
               <div className="flex-auto md:flex lg:flex flex-wrap -mt-8 md:-mt-0 lg:-mt-0 px-5 py-3 items-center justify-between">
                 <div className="flex w-full2 inline-flex space-x-4 py-6 xs:justify-between sm:justify-between md:justify-start lg:justify-start">
                   <div className="flex items-center inline-flex space-x-1">
-                    <img
+                  <Avatar name={createdBy} size="50" round={true} className="flex items-center justify-center shadow-xl rounded-full w-12 h-12 align-middle border-none sm:w-20 lg:w-60" />
+                    {/* <img
                       className="h-12 w-12 rounded-full flex items-center justify-center"
                       src="https://images.unsplash.com/profile-1637914159560-54b148d8e45eimage?dpr=1&auto=format&fit=crop&w=32&h=32&q=60&crop=faces&bg=fff 1x, https://images.unsplash.com/profile-1637914159560-54b148d8e45eimage?dpr=2&auto=format&fit=crop&w=32&h=32&q=60&crop=faces&bg=fff 2x"
                       alt="user"
-                    />
+                    /> */}
                     <div className="block place-self-center px-2 text-sm text-gray-600 font-light capitalize ">
                       {createdBy}
                       <br />

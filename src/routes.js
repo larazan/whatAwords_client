@@ -22,6 +22,10 @@ import Collection from './pages/Collection'
 import Following from './pages/Following'
 import Follower from './pages/Follower';
 
+import Faq from './pages/Faq';
+import Blog from './pages/Blog';
+import BlogDetail from './pages/BlogDetail';
+
 const Routes = () => {
     const location = useLocation();
     const background = location.state && location.state.background;
@@ -44,10 +48,15 @@ const Routes = () => {
                 <Route path="/login" exact component={Login} />
                 <Route path="/change_password" exact component={ChangePassword} />
                 <Route path="/detail/:id" exact component={Detail} />
+                <Route path="/faq" exact component={Faq} />
+                <Route path="/blogs" exact component={Blog} />
+                <Route path="/blog/:slug" exact component={BlogDetail} />
                 <Route path="/:id" exact component={Dashboard} />
                 <Route path="/:id/collections" exact component={Collection} />
                 <Route path="/:id/followers" exact component={Follower} />
                 <Route path="/:id/following" exact component={Following} />
+
+                
             </Switch>
 
             {background && <Route path="/detail/:id" children={<Modal />} />}

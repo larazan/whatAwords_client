@@ -28,7 +28,7 @@ const Dashboard = ({ history, match }) => {
     window.scrollTo(0, 0)
   }, [dispatch, match]);
 
-
+  console.log(words);
 
   return (
     <>
@@ -38,9 +38,9 @@ const Dashboard = ({ history, match }) => {
          </div>
       </div>
 
-      <main className="px-8 z-9 md:container md:mx-auto md:px-8">
-        <div className="mb-20">
-          <section className="flex flex-row flex-wrap mx-auto">
+      <main>
+        <div className="px-8 z-9 md:container md:mx-auto md:px-8">
+          <div className="mt-5 mb-20 flex flex-wrap -m-4">
           {loading ? (
             <Skeleton />
           ) : error ? (
@@ -48,7 +48,7 @@ const Dashboard = ({ history, match }) => {
           ) : (
             <CardMasonry contents={words} />
           )}
-          </section>
+          </div>
         </div>
       </main>
     </>
