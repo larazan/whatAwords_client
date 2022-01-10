@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserFollower } from "../actions/user_actions";
 
 import DashboardHead from "../components/DashboardHead";
-import Skeleton from "../components/Skeleton";
 
 const Follower = ({ history, match }) => {
   const dispatch = useDispatch();

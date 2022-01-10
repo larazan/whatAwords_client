@@ -5,7 +5,7 @@ import { getUserCollection } from "../actions/user_actions";
 
 import DashboardHead from "../components/DashboardHead";
 import Card from "../components/Card";
-import Skeleton from "../components/Skeleton";
+import SkeletonMasonry from "../components/SkeletonMasonry";
 
 const Collection = ({ history, match }) => {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const Collection = ({ history, match }) => {
         <div className="mb-20">
           <section className="flex flex-row flex-wrap mx-auto">
           {loading ? (
-            <Skeleton />
+            <SkeletonMasonry />
           ) : error ? (
             <h2>{error}</h2>
           ) : (

@@ -61,11 +61,11 @@ const Authors = ({ history, match }) => {
               <div className="flex inline-flex space-x-3">
                 {abjad.map((huruf) => (
                   <Link to={`/authors/${huruf}`}>
-                    <button className={` px-4 py-2 bg-white  border border-gray-300 cursor-pointer ${match.params.id === huruf ? 'bg-blue-600 text-white border-blue-700' : 'hover:bg-gray-200'}  font-normal`}>
+                    <div className={` px-4 py-2 bg-white  border border-gray-300 cursor-pointer ${match.params.id === huruf ? 'bg-blue-600 text-white border-blue-700' : 'hover:bg-gray-200'}  font-normal`}>
                       <span className="text-sm font-semibold uppercase">
                         {huruf}
                       </span>
-                    </button>
+                    </div>
                   </Link>
                 ))}
               </div>

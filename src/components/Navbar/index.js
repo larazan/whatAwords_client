@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/user_actions";
+import { getCategories } from "../../actions/category_actions";
 
 import SearchBox from "../SearchBox";
 import ModalLogin from "../ModalLogin";
@@ -11,17 +12,37 @@ import NewsReel from "../NewsReel";
 import imgLogo from "../../assets/Fraspi-preview.png";
 
 const Navbar = () => {
-  const [catOpen, setCatOpen] = useState(false)
-  const [userName, setUserName] = useState('ratri');
+  const [showDrop, setShowDrop] = useState(false);
+  const [showCatDrop, setShowCatDrop] = useState(false);
+  const [catOpen, setCatOpen] = useState(false);
+  const [userName, setUserName] = useState("ratri");
+
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const categoriesList = useSelector((state) => state.categoriesList);
+  const { loading, error, categories } = categoriesList;
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
+
+  const openDrop = () => {
+    console.log("open drop");
+    setShowDrop((prev) => !prev);
+  };
+
+  const openCatDrop = () => {
+    console.log("open drop");
+    setShowCatDrop((prev) => !prev);
+  };
+
   // if (userInfo) {
   //   setUserName(userInfo.user.name);
   // }
-  
+
   const logoutHandler = () => {
     dispatch(logout());
   };
@@ -34,9 +55,8 @@ const Navbar = () => {
   };
 
   const catToggle = () => {
-    setCatOpen(!catOpen)
-}
-
+    setCatOpen(!catOpen);
+  };
 
   return (
     <>
@@ -70,14 +90,31 @@ const Navbar = () => {
             </Link>
           </div>
         </div>
-        <SearchBox position={'navbar'} />
+        <SearchBox position={"navbar"} />
         <div className="flex inline-flex space-x-8">
           <div className="flex items-center hidden md:flex">
-            <Link to="/">
+            <button onClick={openCatDrop}>
               <span className="text-sm font-semibold text-gray-800 uppercase ">
                 Browse Words
               </span>
-            </Link>
+            </button>
+            <div
+                className={`sm:w-44 md:w-44 ${
+                  showCatDrop === false ? "hidden" : ""
+                } top-14 md:top-16 right-50 absolute font-normal bg-white shadow-md rounded-md overflow-hidden border`}
+              >
+                <div className="py-0">
+                  <ul className="flex-col font-sans items-center justify-center text-sm">
+                  {categories.map((category, index) => (
+                    <Link to={`/cat/${category.slug}`} onClick={openCatDrop}>
+                      <li className="sm:py-1 md:py-2 px-6 hover:bg-gray-200 text-md font-semibold capitalize" key={index}>
+                        <span>{category.name}</span>
+                      </li>
+                    </Link>
+                  ))}
+                  </ul>
+                </div>
+              </div>
           </div>
           <div className="flex items-center hidden md:flex">
             <Link to="/authors">
@@ -86,22 +123,7 @@ const Navbar = () => {
               </span>
             </Link>
           </div>
-          {userInfo ? (
-            <div className="flex items-center hidden md:flex cursor-pointer" onClick={logoutHandler}>
-                <span className="text-sm font-semibold text-gray-800 uppercase">
-                  Logout
-                </span>
-            </div>
-          ) : (
-            <div className="flex items-center hidden md:flex">
-              <Link to="/login">
-                <span className="text-sm font-semibold text-gray-800 uppercase">
-                  Sign in
-                </span>
-              </Link>
-            </div>
-          )}
-          
+
           <button className="h-8 w-8 hidden md:flex items-center">
             <svg
               className="h-8 w-8"
@@ -114,29 +136,121 @@ const Navbar = () => {
             </svg>
           </button>
           {userInfo ? (
-            <Link to={`/${userName}`}>
-              <div className="h-8 w-8 items-center">
-                <svg
-                  className="h-8 w-8 md:h-6 md:w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                  />
-                </svg>
+            <>
+              <button onClick={openDrop}>
+                <div className="h-8 w-8 items-center">
+                  <svg
+                    className="h-8 w-8 md:h-6 md:w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
+                  </svg>
+                </div>
+              </button>
+              <div
+                className={`sm:w-60 md:w-64 ${
+                  showDrop === false ? "hidden" : ""
+                } top-14 md:top-16 right-1 absolute font-normal bg-white shadow-md rounded-sm overflow-hidden border`}
+              >
+                <div className="py-2">
+                  <ul className="flex-col font-sans items-center justify-center text-sm">
+                    <Link to={`/${userName}`}>
+                      <li className="sm:py-1 md:py-2 px-6 hover:bg-gray-200">
+                        <span>Your Profile</span>
+                      </li>
+                    </Link>
+                    <Link to={`/${userName}`}>
+                      <li className="sm:py-1 md:py-2 px-6 hover:bg-gray-200">
+                        <span>Your Collections</span>
+                      </li>
+                    </Link>
+                    <Link to={`/${userName}`}>
+                      <li className="sm:py-1 md:py-2 px-6 hover:bg-gray-200">
+                        <span>Settings</span>
+                      </li>
+                    </Link>
+                    <Link to={`/${userName}`}>
+                      <li className="sm:py-1 md:py-2 px-6 hover:bg-gray-200">
+                        <span>Change Language</span>
+                      </li>
+                    </Link>
+                    <Link to="" onClick={logoutHandler}>
+                      <li className="sm:py-1 md:py-2 px-6 hover:bg-gray-200">
+                        <span>Logout</span>
+                      </li>
+                    </Link>
+                  </ul>
+                </div>
+                <hr></hr>
+                <div className="py-2">
+                  <ul className="flex-col font-sans items-center justify-center text-sm">
+                    <Link to="">
+                      <li className="sm:py-1 md:py-2 px-6 hover:bg-gray-200">
+                        <span>Image & Video API</span>
+                      </li>
+                    </Link>
+                    <Link to="">
+                      <li className="sm:py-1 md:py-2 px-6 hover:bg-gray-200">
+                        <span>Apps & Plugins</span>
+                      </li>
+                    </Link>
+                    <Link to="/faq" onClick={openDrop}>
+                      <li className="sm:py-1 md:py-2 px-6 hover:bg-gray-200">
+                        <span>FAQ</span>
+                      </li>
+                    </Link>
+                    <Link to="">
+                      <li className="sm:py-1 md:py-2 px-6 hover:bg-gray-200">
+                        <span>Partnerships</span>
+                      </li>
+                    </Link>
+                    <Link to="">
+                      <li className="sm:py-1 md:py-2 px-6 hover:bg-gray-200">
+                        <span>Imprint & Terms</span>
+                      </li>
+                    </Link>
+                  </ul>
+                </div>
+                <div className="">
+                    <div className="items-center min-w-full">
+                      <div className="">
+                        <ul className="flex justify-between">
+                          <Link to="" className="w-1/4 h-10 md:h-14 hover:bg-blue-300 flex items-center justify-center">
+                            <span className="">
+                              <img className="h-6 w-6 md:h-8 md:w-8" src="https://img.icons8.com/ios-filled/50/000000/facebook.png" />
+                            </span>
+                          </Link>
+                          <Link to="" className="w-1/4 h-10 md:h-14 hover:bg-green-300 flex items-center justify-center">
+                            <span className="h-6 w-6 md:h-7 md:w-7">
+                              <img src="https://img.icons8.com/ios-filled/50/000000/twitter.png" />
+                            </span>
+                          </Link>
+                          <Link to="" className="w-1/4 h-10 md:h-14 hover:bg-orange-300 flex items-center justify-center">
+                            <span className="h-6 w-6 md:h-7 md:w-7">
+                              <img src="https://img.icons8.com/ios-filled/50/000000/instagram-new.png" />
+                            </span>
+                          </Link>
+                          <Link to="" className="w-1/4 h-10 md:h-14 hover:bg-red-300 flex items-center justify-center">
+                            <span className="h-7 w-7 md:h-8 md:w-8">
+                              <img src="https://img.icons8.com/ios-filled/50/000000/youtube-play.png" />
+                            </span>
+                          </Link>
+                        </ul>
+                      </div>
+                  </div>
+                </div>
               </div>
-            </Link>
+            </>
           ) : (
-            <button
-              className="h-8 w-8 items-center"
-              onClick={openModal}
-            >
+            <button className="h-8 w-8 items-center" onClick={openModal}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-8 w-8 md:h-6 md:w-6"
@@ -153,10 +267,9 @@ const Navbar = () => {
               </svg>
             </button>
           )}
-          
         </div>
       </header>
-      
+
       <Menu catOpen={catOpen} catToggle={catToggle} />
       <ModalLogin showModal={showModal} setShowModal={setShowModal} />
     </>

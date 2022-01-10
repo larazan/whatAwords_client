@@ -1,0 +1,7 @@
+protected route
+like button animation
+collect button animated
+follow button animated
+login
+register
+forgot password

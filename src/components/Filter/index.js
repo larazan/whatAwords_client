@@ -52,13 +52,12 @@ const Filter = () => {
             <div className="px-8 text-sm inline-flex space-x-5 md:px-12">
             {categories.map((category, index) => (
               <Link to={`/cat/${category.slug}`}>
-                <a
-                    href="#"
+                <div
                     key={index}
                     className="font-medium text-gray-800 whitespace-nowrap capitalize"
                 >
                 {category.name}
-                </a>
+                </div>
               </Link>
             ))}
             </div>

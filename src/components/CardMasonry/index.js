@@ -48,10 +48,17 @@ const CardMasonry = ({ contents }) => {
             <p className="leading-relaxed text-black text-center text-xl md:text-xl lg:text-2xl" style={{ fontFamily: `${randomFamily()}` }}>
               {content.words}
             </p>
-            {content.author.name && (
+            {content.author && (
               <span className="px-0 md:px-2 lg:px-4 pt-4 text-xs md:text-sm lg:text-sm text-black float-right">
                 - {content.author.name}
               </span>
+            )}
+
+            {content.answer && (
+              <div className="px-0 md:px-2 lg:px-4 pt-4 text-xs font-sans md:text-sm lg:text-sm text-black text-center">
+                <div className="font-semibold">Answer:</div>
+              <span>{content.answer}</span>
+              </div>
             )}
             
           </div>

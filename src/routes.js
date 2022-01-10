@@ -16,6 +16,7 @@ import ChangePassword from './pages/ChangePassword'
 import Tag from './pages/Tag'
 import Category from './pages/Category'
 import Modal from './components/Modal'
+import ProtectedRoute from './components/ProtectedRoute';
 import Detail from './pages/Detail'
 import Search from './pages/Search'
 import Collection from './pages/Collection'
@@ -25,6 +26,9 @@ import Follower from './pages/Follower';
 import Faq from './pages/Faq';
 import Blog from './pages/Blog';
 import BlogDetail from './pages/BlogDetail';
+import Player from './pages/Player';
+import Audio from './pages/Audio';
+import CardAudio from './components/CardAudio';
 
 const Routes = () => {
     const location = useLocation();
@@ -46,15 +50,19 @@ const Routes = () => {
                 <Route path="/dashboard" exact component={Dashboard} />
                 <Route path="/register" exact component={Register} />
                 <Route path="/login" exact component={Login} />
+                <Route path="/player" exact component={Player} />
+                <Route path="/audio" exact component={Audio} />
+                <Route path="/cardaudio" exact component={CardAudio} />
+
                 <Route path="/change_password" exact component={ChangePassword} />
                 <Route path="/detail/:id" exact component={Detail} />
                 <Route path="/faq" exact component={Faq} />
                 <Route path="/blogs" exact component={Blog} />
                 <Route path="/blog/:slug" exact component={BlogDetail} />
-                <Route path="/:id" exact component={Dashboard} />
-                <Route path="/:id/collections" exact component={Collection} />
-                <Route path="/:id/followers" exact component={Follower} />
-                <Route path="/:id/following" exact component={Following} />
+                <ProtectedRoute path="/:id" exact component={Dashboard} />
+                <ProtectedRoute path="/:id/collections" exact component={Collection} />
+                <ProtectedRoute path="/:id/followers" exact component={Follower} />
+                <ProtectedRoute path="/:id/following" exact component={Following} />
 
                 
             </Switch>

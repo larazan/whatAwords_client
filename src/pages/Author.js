@@ -4,7 +4,7 @@ import { getWordsByAuthor } from "../actions/words_actions";
 import { getAuthorByName } from "../actions/authors_actions";
 import Avatar from 'react-avatar';
 
-import Skeleton from "../components/Skeleton";
+import SkeletonMasonry from "../components/SkeletonMasonry";
 import Count from "../components/Count";
 import CardMasonry from "../components/CardMasonry";
 import Filter from "../components/Filter";
@@ -12,8 +12,9 @@ import Filter from "../components/Filter";
 const Author = ({ history, match }) => {
   const [slug, setSlug] = useState("");
 
-  const wordsByAuthor = useSelector((state) => state.wordsByAuthor);
   const dispatch = useDispatch();
+  
+  const wordsByAuthor = useSelector((state) => state.wordsByAuthor);
   const { loading, error, words, page, results, count } = wordsByAuthor;
 
   const authorByName = useSelector((state) => state.authorByName);
@@ -87,7 +88,7 @@ const Author = ({ history, match }) => {
 
           <div className="mt-5 mb-20 flex flex-wrap -m-4">
             {loading ? (
-              <Skeleton />
+              <SkeletonMasonry />
             ) : error ? (
               <h2>{error}</h2>
             ) : (

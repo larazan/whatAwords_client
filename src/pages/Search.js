@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getWordsBySearch } from "../actions/words_actions";
 
 import Tags from "../components/Tags";
-import Skeleton from "../components/Skeleton";
+import SkeletonMasonry from "../components/SkeletonMasonry";
 import Count from "../components/Count";
 import UniPaginate from "../components/UniPaginate";
 import Filter from "../components/Filter";
@@ -78,7 +78,7 @@ const Search = ({ match }) => {
 
           <div className="mt-5 mb-20 flex flex-wrap -m-4 ">
             {loading ? (
-              <Skeleton />
+              <SkeletonMasonry />
             ) : error ? (
               <h2>{error}</h2>
             ) : (

@@ -78,6 +78,7 @@ export const login = (email, password) => async (dispatch) => {
       })
   
       localStorage.setItem('userInfo', JSON.stringify(data))
+      localStorage.setItem("isAuthenticated", "true");
     } catch (error) {
       dispatch({
         type: USER_LOGIN_FAIL,
@@ -91,6 +92,7 @@ export const login = (email, password) => async (dispatch) => {
   
   export const logout = () => (dispatch) => {
     localStorage.removeItem('userInfo')   
+    localStorage.removeItem('isAuthenticated')   
     dispatch({ type: USER_LOGOUT })
     dispatch({ type: USER_DETAILS_RESET })
     dispatch({ type: USER_LIST_RESET })
@@ -128,6 +130,7 @@ export const login = (email, password) => async (dispatch) => {
       })
   
       localStorage.setItem('userInfo', JSON.stringify(data))
+      localStorage.setItem("isAuthenticated", "true")
     } catch (error) {
       dispatch({
         type: USER_REGISTER_FAIL,
@@ -204,6 +207,7 @@ export const login = (email, password) => async (dispatch) => {
         payload: data,
       })
       localStorage.setItem('userInfo', JSON.stringify(data))
+      localStorage.setItem("isAuthenticated", "true")
     } catch (error) {
       const message =
         error.response && error.response.data.message

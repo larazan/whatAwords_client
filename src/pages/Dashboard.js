@@ -5,7 +5,7 @@ import { getWordsByUser } from "../actions/words_actions";
 
 import DashboardHead from "../components/DashboardHead";
 import CardMasonry from "../components/CardMasonry";
-import Skeleton from "../components/Skeleton";
+import SkeletonMasonry from "../components/SkeletonMasonry";
 import UniPaginate from "../components/UniPaginate";
 
 const Dashboard = ({ history, match }) => {
@@ -42,7 +42,7 @@ const Dashboard = ({ history, match }) => {
         <div className="px-8 z-9 md:container md:mx-auto md:px-8">
           <div className="mt-5 mb-20 flex flex-wrap -m-4">
           {loading ? (
-            <Skeleton />
+            <SkeletonMasonry />
           ) : error ? (
             <h2>{error}</h2>
           ) : (

@@ -3,28 +3,28 @@ import {
   Link,
 } from "react-router-dom";
 
-const ModalLogin = ({ showModal, setShowModal }) => {
+const ModalLogin = ({ showModalLogin, setShowModalLogin }) => {
   const modalRef = useRef();
 
-  const closeModal = (e) => {
+  const closeModalLogin = (e) => {
     if (modalRef.current === e.target) {
-      setShowModal(false);
+      setShowModalLogin(false);
     }
   };
 
   return (
     <>
-      {showModal ? (
+      {showModalLogin ? (
         <div
           className="main-modal fixed w-full h-full inset-0 z-20 flex justify-center content-center animated2 fadeIn2 faster2 overflow-y-auto"
           style={{ background: `rgba(12,15,19,.9)` }}
           ref={modalRef}
-          onClick={closeModal}
+          onClick={closeModalLogin}
         >
           <div className="fixed px-2 py-2 top-3 left-2">
             <button
               className="h-8 w-8"
-              onClick={() => setShowModal((prev) => !prev)}
+              onClick={() => setShowModalLogin((prev) => !prev)}
             >
               <svg
                 className="h-8 w-8 text-white font-bold"

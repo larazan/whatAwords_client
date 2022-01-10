@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getWordsByTag } from "../actions/words_actions";
 
 import Tags from "../components/Tags";
-import Skeleton from "../components/Skeleton";
+import SkeletonMasonry from "../components/SkeletonMasonry";
 import Count from "../components/Count";
 import Filter from "../components/Filter";
 import UniPaginate from "../components/UniPaginate";
 import CardMasonry from "../components/CardMasonry";
+import NoData from "../components/NoData";
 
 const Tag = ({ history, match }) => {
   const { search } = useLocation();
@@ -16,7 +17,7 @@ const Tag = ({ history, match }) => {
   const page = paginParams.get("page") || 1;
 
   const dispatch = useDispatch();
-  
+
   const wordsByTag = useSelector((state) => state.wordsByTag);
   const { loading, error, words, count, results } = wordsByTag;
 
@@ -59,28 +60,36 @@ const Tag = ({ history, match }) => {
               style={{ fontFamily: "Peace" }}
             >
               Tag:{" "}
-              <span className="text-orange-600 underline">{match.params.tag}</span>
+              <span className="text-orange-600 underline">
+                {match.params.tag}
+              </span>
             </p>
           </div>
 
-          <Count page={page} results={results} count={count} />
+          {results !== 0 ? (
+            <>
+              <Count page={page} results={results} count={count} />
 
-          <div className="mt-5 mb-20 flex flex-wrap -m-4 ">
-            {loading ? (
-              <Skeleton />
-            ) : error ? (
-              <h2>{error}</h2>
-            ) : (
-              <CardMasonry contents={words} />
-            )}
-          </div>
+              <div className="mt-5 mb-20 flex flex-wrap -m-4 ">
+                {loading ? (
+                  <SkeletonMasonry />
+                ) : error ? (
+                  <h2>{error}</h2>
+                ) : (
+                  <CardMasonry contents={words} />
+                )}
+              </div>
 
-          <UniPaginate
-            page={page}
-            result={results}
-            url={"tags"}
-            params={match.params.tag}
-          />
+              <UniPaginate
+                page={page}
+                result={results}
+                url={"tags"}
+                params={match.params.tag}
+              />
+            </>
+          ) : (
+            <NoData />
+          )}
         </div>
       </main>
     </>

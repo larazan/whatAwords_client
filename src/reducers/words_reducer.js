@@ -166,7 +166,13 @@ export const wordsByCategoryReducer = (state = { words: []}, action) => {
         case WORDS_BY_CATEGORY_REQUEST:
           return { loading: true, words: [] }
         case WORDS_BY_CATEGORY_SUCCESS:
-          return { loading: false, words: action.payload.words }
+          return { 
+            loading: false, 
+            words: action.payload.words, 
+            page: action.payload.page, 
+            results: action.payload.results, 
+            count: action.payload.count  
+          }
         case WORDS_BY_CATEGORY_FAIL:
           return { loading: false, error: action.payload }
         default:

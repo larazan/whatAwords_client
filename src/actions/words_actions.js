@@ -296,11 +296,11 @@ export const getWordsByUser = (userId) => async (dispatch) => {
     }
 }
 
-export const getWordsByCategory = (category) => async (dispatch) => {
+export const getWordsByCategory = (category, pageNumber = '') => async (dispatch) => {
     try {
         dispatch({ type: WORDS_BY_CATEGORY_REQUEST })
 
-        const { data } = await axios.get(`${WORDS_SERVER}/cat/${category}`)
+        const { data } = await axios.get(`${WORDS_SERVER}/c/${category}?page=${pageNumber}`)
 
         dispatch({
             type: WORDS_BY_CATEGORY_SUCCESS,

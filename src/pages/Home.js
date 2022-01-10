@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getWords, getWordsInfinite } from "../actions/words_actions";
 
 import Tags from "../components/Tags";
-import Skeleton from "../components/Skeleton";
+import SkeletonMasonry from "../components/SkeletonMasonry";
 import Paginate from "../components/Paginate";
 import Count from "../components/Count";
 import Filter from "../components/Filter";
@@ -50,7 +50,7 @@ const Home = ({ match }) => {
 
           <div className="mt-5 mb-20 flex flex-wrap -m-4">
             {loading ? (
-              <Skeleton />
+              <SkeletonMasonry />
             ) : error ? (
               <h2>{error}</h2>
             ) : (

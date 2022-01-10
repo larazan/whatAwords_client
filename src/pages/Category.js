@@ -4,19 +4,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { getWordsByCategory } from "../actions/words_actions";
 
 import Tags from "../components/Tags";
-import Skeleton from "../components/Skeleton";
+import SkeletonMasonry from "../components/SkeletonMasonry";
 import Count from "../components/Count";
 import Filter from "../components/Filter";
 import UniPaginate from "../components/UniPaginate";
 import CardMasonry from "../components/CardMasonry";
+import NoData from "../components/NoData";
 
 const Category = ({ match }) => {
-    const { search } = useLocation();
+  const { search } = useLocation();
   const paginParams = new URLSearchParams(search);
   const page = paginParams.get("page") || 1;
 
   const dispatch = useDispatch();
-  
+
   const wordsByCategory = useSelector((state) => state.wordsByCategory);
   const { loading, error, words, count, results } = wordsByCategory;
 
@@ -24,9 +25,9 @@ const Category = ({ match }) => {
     dispatch(getWordsByCategory(match.params.cat, parseInt(page)));
     window.scrollTo(0, 0);
   }, [dispatch, match, page]);
-    return (
-        <>
-            <main>
+  return (
+    <>
+      <main>
         <Filter />
 
         <div className="md:hidden">
@@ -58,32 +59,40 @@ const Category = ({ match }) => {
               style={{ fontFamily: "Peace" }}
             >
               Category:{" "}
-              <span className="text-orange-600 underline">{match.params.cat}</span>
+              <span className="text-orange-600 underline">
+                {match.params.cat}
+              </span>
             </p>
           </div>
 
-          <Count page={page} results={results} count={count} />
+          {results !== 0 ? (
+            <>
+              <Count page={page} results={results} count={count} />
 
-          <div className="mt-5 mb-20 flex flex-wrap -m-4 ">
-            {loading ? (
-              <Skeleton />
-            ) : error ? (
-              <h2>{error}</h2>
-            ) : (
-              <CardMasonry contents={words} />
-            )}
-          </div>
+              <div className="mt-5 mb-20 flex flex-wrap -m-4 ">
+                {loading ? (
+                  <SkeletonMasonry />
+                ) : error ? (
+                  <h2>{error}</h2>
+                ) : (
+                  <CardMasonry contents={words} />
+                )}
+              </div>
 
-          <UniPaginate
-            page={page}
-            result={results}
-            url={"cat"}
-            params={match.params.cat}
-          />
+              <UniPaginate
+                page={page}
+                result={results}
+                url={"cat"}
+                params={match.params.cat}
+              />
+            </>
+          ) : (
+            <NoData />
+          )}
         </div>
       </main>
-        </>
-    )
-}
+    </>
+  );
+};
 
-export default Category
+export default Category;

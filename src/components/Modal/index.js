@@ -9,27 +9,30 @@ import {
   likeWord,
   unlikeWord,
   collectWord,
+  downloadWord,
 } from "../../actions/words_actions";
 import { followUser, unfollowUser } from "../../actions/user_actions";
-import Avatar from 'react-avatar';
+import Avatar from "react-avatar";
 
 import Message from "../Message";
 import ModalLogin from "../ModalLogin";
 
-import { showSuccessMessage, showErrorMessage } from '../utils/helpers';
-import { fontFamilies } from '../../assets/data/fontFamilies';
-import { gradients } from '../../assets/data/gradients';
+import { showSuccessMessage, showErrorMessage } from "../utils/helpers";
+import { fontFamilies } from "../../assets/data/fontFamilies";
+import { gradients } from "../../assets/data/gradients";
 
 const Modal = () => {
-  const modalRef = useRef();
+  // const modalRef = useRef();
   const history = useHistory();
   let { id } = useParams();
 
-  const [isCopied, setIsCopied] = useState(false);
   const [like, setLike] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
   const [collected, setCollected] = useState(false);
+  const [follower, setFollower] = useState(0);
   const [followed, setFollowed] = useState(false);
+
+  
 
   const dispatch = useDispatch();
   const wordList = useSelector((state) => state.wordList);
@@ -67,6 +70,12 @@ const Modal = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  console.log(userInfo);
+  
+  console.log(likes);
+  console.log(followers);
+  console.log(collects);
+
   useEffect(() => {
     dispatch(viewWord(id));
     if (successWordLike) {
@@ -77,10 +86,14 @@ const Modal = () => {
     window.scrollTo(0, 0);
   }, [dispatch, id, successWordLike]);
 
-  
+  useEffect(() => {
+    setFollower(followersTot);
+    setLike(likeTot);
+  }, [])
+
   const randomGrad = () => {
     let mat = Math.floor(Math.random() * gradients.length);
-    return gradients[mat]['tail'];
+    return gradients[mat]["tail"];
   };
 
   const randomFamily = () => {
@@ -89,50 +102,78 @@ const Modal = () => {
   };
 
   const likeHandler = (e) => {
-    console.log("you was liked!");
+
     e.preventDefault();
     if (isLiked) {
-      dispatch(unlikeWord(id));
+      // dispatch(unlikeWord(id));
+      console.log("you was unliked!");
     } else {
-      dispatch(likeWord(id));
+      // dispatch(likeWord(id));
+      console.log("you was liked!");
     }
 
-    // setLike(isLiked ? like - 1 : like + 1);
+    setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
 
   const followHandler = async (e) => {
-    console.log("you was followed");
+    
     e.preventDefault();
     if (followed) {
-      dispatch(unfollowUser(creatorId));
+      // dispatch(unfollowUser(creatorId));
+      console.log("you was unfollowed");
     } else {
-      dispatch(followUser(creatorId));
+      // dispatch(followUser(creatorId));
+      console.log("you was followed");
     }
+    setFollower(followed ? follower - 1 : follower + 1);
     setFollowed(!followed);
   };
 
   const collectHandler = async (e) => {
-    console.log("you was collected");
+    
     e.preventDefault();
     if (collected) {
-      dispatch(collectWord(id));
+      // dispatch(collectWord(id));
+      console.log("you was collected");
     }
     setCollected(!collected);
   };
 
-  const [showModal, setShowModal] = useState(false);
-
-  const openModal = () => {
-    console.log("modal open!");
-    setShowModal((prev) => !prev);
-  };
+  const [showModalLogin, setShowModalLogin] = useState(false);
+  const [showModal, setShowModal] = useState(true);
+  const cancelButtonRef = useRef(null)
 
   const closeModal = (e) => {
-    if (modalRef.current === e.target) {
+    console.log('modal close');
+    setShowModal((prev) => !prev);
+    e.stopPropagation();
+    history.goBack();
+  };
+
+  let modal = document.getElementById("my-modal");
+
+  window.onclick = function(e) {
+    if (e.target == modal) {
+      setShowModal((prev) => !prev);
       e.stopPropagation();
       history.goBack();
+        // modal.style.display = "none";
     }
+  }
+
+  const openModalLogin = () => {
+    console.log("modal open!");
+    setShowModalLogin((prev) => !prev);
+  };
+
+  const closeModalLogin = (e) => {
+    console.log('modal close');
+    setShowModalLogin(!showModalLogin);
+    // if (modalRef.current === e.target) {
+    //   e.stopPropagation();
+    //   history.goBack();
+    // }
   };
 
   const saveAs = (blob, fileName) => {
@@ -162,29 +203,25 @@ const Modal = () => {
     htmlToImage.toPng(data).then((dataUrl) => {
       saveAs(dataUrl, `${id}.png`);
     });
+    
     showSuccessMessage("success", "yeah you download it!");
+    dispatch(downloadWord(id));
   };
 
   const onCopyText = () => {
     showSuccessMessage("success", "yeah you copy it!");
   };
 
-  const toggleM = () => {
-    
-  }
-
   return (
     <>
       <div
         className="main-modal fixed w-full h-full inset-0 z-20 flex justify-center items-center2 animated fadeIn faster overflow-y-auto"
-        onClick={closeModal}
         style={{ background: `rgba(12,15,19,.9)` }}
-        ref={modalRef}
+        // onClick={closeModal}
+        id="my-modal"
       >
-        <div 
-          className="fixed md:px-2 md:py-2 lg:px-2 lg:py-2 top-2 md:top-3 lg:top-3 xl:top-3 left-2"
-        >
-          <button className="h-8 w-8">
+        <div className="fixed md:px-2 md:py-2 lg:px-2 lg:py-2 top-2 md:top-3 lg:top-3 xl:top-3 left-2">
+          <button className="h-8 w-8" onClick={closeModal}>
             <svg
               className="h-6 w-6 md:h-8 md:w-8 lg:h-8 lg:w-8 md:text-white lg:text-white font-bold"
               xmlns="http://www.w3.org/2000/svg"
@@ -247,29 +284,35 @@ const Modal = () => {
             <Message />
           ) : (
             <>
-            <div className="flex justify-end py-2 px-2 md:hidden lg:hidden">
-            <button className="h-8 w-8" >
-              <svg
-                className="h-8 w-8 font-bold"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                onClick={closeModal} ref={modalRef}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-            </div>
+              <div className="flex justify-end py-2 px-2 md:hidden lg:hidden">
+                <button className="h-8 w-8">
+                  <svg
+                    className="h-8 w-8 font-bold"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    onClick={closeModal}
+                    // onClick={() => setShowModal(false)}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
               <div className="flex-auto md:flex lg:flex flex-wrap -mt-8 md:-mt-0 lg:-mt-0 px-5 py-3 items-center justify-between">
                 <div className="flex w-full2 inline-flex space-x-4 py-6 xs:justify-between sm:justify-between md:justify-start lg:justify-start">
                   <div className="flex items-center inline-flex space-x-1">
-                  <Avatar name={createdBy} size="50" round={true} className="flex items-center justify-center shadow-xl rounded-full w-12 h-12 align-middle border-none sm:w-20 lg:w-60" />
+                    <Avatar
+                      name={createdBy}
+                      size="50"
+                      round={true}
+                      className="flex items-center justify-center shadow-xl rounded-full w-12 h-12 align-middle border-none sm:w-20 lg:w-60"
+                    />
                     {/* <img
                       className="h-12 w-12 rounded-full flex items-center justify-center"
                       src="https://images.unsplash.com/profile-1637914159560-54b148d8e45eimage?dpr=1&auto=format&fit=crop&w=32&h=32&q=60&crop=faces&bg=fff 1x, https://images.unsplash.com/profile-1637914159560-54b148d8e45eimage?dpr=2&auto=format&fit=crop&w=32&h=32&q=60&crop=faces&bg=fff 2x"
@@ -279,57 +322,73 @@ const Modal = () => {
                       {createdBy}
                       <br />
                       <span className="text-sm font-extralight ">
-                        {followersTot} follower
+                        {follower} follower
                       </span>
                     </div>
                   </div>
 
                   <div className="relative py-3 left-0  space-x-2">
                     {userInfo ? (
-                      <button
-                        className="bg-blue-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded"
+                      <div
+                        className={` px-4 py-2 font-semibold ${followed ? 'text-white bg-blue-500' : 'text-blue-500 bg-white border border-blue-500'}  inline-flex items-center space-x-2 rounded`}
                         onClick={followHandler}
                       >
-                        <span>Follow</span>
-                      </button>
+                        <span>{followed ? "Following" : "Follow"}</span>
+                      </div>
                     ) : (
-                      <button
+                      <div
                         className="bg-blue-500 px-4 py-1 font-light text-white inline-flex items-center space-x-2 rounded"
-                        onClick={followHandler}
+                        onClick={openModalLogin}
                       >
                         <span>Follow</span>
-                      </button>
+                      </div>
                     )}
                   </div>
                 </div>
 
                 <div className="flex w-full2 space-x-2 justify-between md:justify-end lg:justify-end">
                   {userInfo ? (
-                    <button
+                    <div
                       className="bg-white px-3 py-1 font-extralight text-gray-500 border-2 border-gray-400 inline-flex items-center space-x-2 rounded hover:border-gray-600 hover:text-gray-800"
                       onClick={likeHandler}
                       title="Like Quote"
                     >
-                      <svg
-                        className="h-5 w-5"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                        />
-                      </svg>
-                      <span className="hidden lg:block">{likeTot} Likes</span>
-                    </button>
+                      {isLiked ? (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-5 w-5"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      ) : (
+                        <svg
+                          className="h-5 w-5"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                          />
+                        </svg>
+                      )}
+
+                      <span className="hidden lg:block">{like} Likes</span>
+                    </div>
                   ) : (
-                    <button
+                    <div
                       className="bg-white px-3 py-1 font-extralight text-gray-500 border-2 border-gray-400 inline-flex items-center space-x-2 rounded hover:border-gray-600 hover:text-gray-800"
-                      onClick={openModal}
+                      onClick={openModalLogin}
                       title="Like Quote"
                     >
                       <svg
@@ -345,33 +404,49 @@ const Modal = () => {
                         />
                       </svg>
                       <span className="hidden lg:block">{likeTot} Likes</span>
-                    </button>
+                    </div>
                   )}
 
                   {userInfo ? (
-                    <button
+                    <div
                       className="bg-white px-3 py-2 font-extralight text-gray-500 border-2 border-gray-400 inline-flex items-center space-x-2 rounded hover:border-gray-600 hover:text-gray-800"
                       onClick={collectHandler}
                       title="Add to collection"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
+                      {collected ? (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-5 w-5"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      ) : (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-5 w-5"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      )}
+
                       <span className="hidden lg:block">Collect</span>
-                    </button>
+                    </div>
                   ) : (
-                    <button
+                    <div
                       className="bg-white px-3 py-2 font-extralight text-gray-500 border-2 border-gray-400 inline-flex items-center space-x-2 rounded hover:border-gray-600 hover:text-gray-800"
-                      onClick={openModal}
+                      onClick={openModalLogin}
                       title="Add to collection"
                     >
                       <svg
@@ -387,10 +462,10 @@ const Modal = () => {
                         />
                       </svg>
                       <span className="hidden lg:block">Collect</span>
-                    </button>
+                    </div>
                   )}
                   <CopyToClipboard text={word.words} onCopy={onCopyText}>
-                    <button
+                    <div
                       className="bg-white px-3 py-2 font-extralight text-gray-500 border-2 border-gray-400 inline-flex items-center space-x-2 rounded hover:border-gray-600 hover:text-gray-800"
                       title="Copy to clipboard"
                     >
@@ -404,7 +479,7 @@ const Modal = () => {
                         <path d="M3 8a2 2 0 012-2v10h8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" />
                       </svg>
                       <span className="hidden lg:block">Copy</span>
-                    </button>
+                    </div>
                   </CopyToClipboard>
                   <button
                     className="bg-gradient-to-r from-green-400 to-green-500 hover:from-green-500 hover:to-green-400 px-4 py-2 font-extralight text-white inline-flex items-center space-x-2 rounded"
@@ -434,9 +509,17 @@ const Modal = () => {
                           >
                             {word.words}
                           </p>
-                          <span className="px-4 pt-5 text-sm text-black float-right">
-                            - {authorName}
-                          </span>
+                          {authorName !== 'admin' && (
+                            <span className="px-4 pt-5 text-sm text-black float-right">
+                              - {authorName}
+                            </span>
+                          )}
+                          {word.answer && (
+                            <div className="px-0 md:px-2 lg:px-4 pt-4 text-xs font-sans md:text-sm lg:text-sm text-black text-center">
+                              <div className="font-semibold">Answer:</div>
+                            <span>{word.answer}</span>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -572,7 +655,6 @@ const Modal = () => {
                         <span>No attribution required.</span>
                       </div>
                     </div>
-                    
                   </div>
                 </div>
               </div>
@@ -581,7 +663,7 @@ const Modal = () => {
         </div>
       </div>
 
-      <ModalLogin showModal={showModal} setShowModal={setShowModal} />
+      <ModalLogin showModalLogin={showModalLogin} setShowModalLogin={setShowModalLogin} />
     </>
   );
 };
