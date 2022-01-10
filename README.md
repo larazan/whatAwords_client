@@ -24,12 +24,12 @@ A Lists of all motivational quotes, riddle, poetry, motivational speech from all
 
 ## Screenshots
 <div>
-<img width="250" src="https://https://github.com/larazan/whatAwords_client/blob/main/screenshots/mobile (1).png"> </img>
-<img width="250" src="https://https://github.com/larazan/whatAwords_client/blob/main/screenshots/mobile (2).png"> </img>
-  <img width="250" src="https://https://github.com/larazan/whatAwords_client/blob/main/screenshots/mobile (5).png"> </img>
-  <img width="250" src="https://https://github.com/larazan/whatAwords_client/blob/main/screenshots/mobile (6).png"> </img>
-  <img width="250" src="https://https://github.com/larazan/whatAwords_client/blob/main/screenshots/mobile (7).png"> </img>
-  <img width="250" src="https://https://github.com/larazan/whatAwords_client/blob/main/screenshots/mobile (8).png"> </img>
+<img width="250" src="https://github.com/larazan/whatAwords_client/blob/main/screenshots/mobile (1).png"> </img>
+<img width="250" src="https://github.com/larazan/whatAwords_client/blob/main/screenshots/mobile (2).png"> </img>
+  <img width="250" src="https://github.com/larazan/whatAwords_client/blob/main/screenshots/mobile (5).png"> </img>
+  <img width="250" src="https://github.com/larazan/whatAwords_client/blob/main/screenshots/mobile (6).png"> </img>
+  <img width="250" src="https://github.com/larazan/whatAwords_client/blob/main/screenshots/mobile (7).png"> </img>
+  <img width="250" src="https://github.com/larazan/whatAwords_client/blob/main/screenshots/mobile (8).png"> </img>
   <img width="250" src="https://https://github.com/larazan/whatAwords_client/blob/main/screenshots/61c81aec301e19260c9f856a.png"> </img>
   
 </div>
