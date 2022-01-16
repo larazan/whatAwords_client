@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Masonry from "react-masonry-css";
 
+import ModalAudio from "../ModalAudio";
+
 const CardAudio = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    console.log("modal open!");
+    setShowModal((prev) => !prev);
+  };
+
   const breakpointColumnsObj = {
     default: 4,
     1100: 3,
@@ -52,7 +61,11 @@ const CardAudio = () => {
              {
                songs.map((song, index) => {
                  let colorPick = randomColor()
-                 return <div className={`flex md:flex-shrink-0 p-6 md:p-2 relative overflow-hidden bg-${colorPick}-500 rounded-lg shadow-lg  cursor-zoom-in`}>
+                 return <div 
+                 className={`flex md:flex-shrink-0 p-6 md:p-2 relative overflow-hidden bg-${colorPick}-500 rounded-lg shadow-lg  cursor-zoom-in`}
+                  key={index}
+                  onClick={openModal}
+                 >
                  <svg
                    className="absolute bottom-0 left-0 mb-8"
                    viewBox="0 0 375 283"
@@ -365,6 +378,8 @@ const CardAudio = () => {
           </div>
         </div>
       </main>
+
+      <ModalAudio showModal={showModal} setShowModal={setShowModal} />
     </>
   );
 };

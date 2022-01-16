@@ -1,5 +1,5 @@
 import React from 'react'
-import AudioPlayer from '../components/Audio/AudioPlayer'
+import AudioPlayer from '../components/AudioNew/AudioPlayer'
 
 import { tracks } from '../assets/data/tracks'
 
