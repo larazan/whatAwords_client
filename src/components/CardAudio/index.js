@@ -379,7 +379,7 @@ const CardAudio = () => {
         </div>
       </main>
 
-      <ModalAudio showModal={showModal} setShowModal={setShowModal} />
+      <ModalAudio showModal={showModal} closeModal={setShowModal} />
     </>
   );
 };

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAuthorByAlphabet } from "../actions/authors_actions";
 
 import Filter from "../components/Filter";
+import Spinner from "../components/Spinner";
 
 const Authors = ({ history, match }) => {
   const [alpha, setAlpha] = useState("a");
@@ -13,12 +14,16 @@ const Authors = ({ history, match }) => {
   const { loading, error, authors } = authorByAlphabet;
 
   useEffect(() => {
-    setAlpha(match.params.id);
+    if (match.params.id) {
+      setAlpha(match.params.id);
+    }
+    
     dispatch(getAuthorByAlphabet(match.params.id));
     window.scrollTo(0, 0)
   }, [dispatch, match]);
 
   console.log(authors);
+  console.log(alpha);
 
   const abjad = [
     "a",
@@ -61,7 +66,7 @@ const Authors = ({ history, match }) => {
               <div className="flex inline-flex space-x-3">
                 {abjad.map((huruf) => (
                   <Link to={`/authors/${huruf}`}>
-                    <div className={` px-4 py-2 bg-white  border border-gray-300 cursor-pointer ${match.params.id === huruf ? 'bg-blue-600 text-white border-blue-700' : 'hover:bg-gray-200'}  font-normal`}>
+                    <div className={` px-4 py-2 bg-white  border border-gray-300 cursor-pointer ${match.params.id === huruf || alpha === huruf ? 'bg-blue-600 text-white border-blue-700' : 'hover:bg-gray-200'}  font-normal`}>
                       <span className="text-sm font-semibold uppercase">
                         {huruf}
                       </span>
@@ -83,7 +88,7 @@ const Authors = ({ history, match }) => {
           <section className="flex flex-row flex-wrap justify-between mb-10">
             <div className="grid grid-cols-4 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-6 xl:grid-cols-8">
               {
-              loading ? <h2>Loading...</h2> : error ? <h2>{error}</h2> :
+              loading ? (<Spinner width={10} height={10} />) : error ? <h2>{error}</h2> :
               authors.map((author, index) => (
                 <Link to={`/author/${author.slug}`}>
                   <div

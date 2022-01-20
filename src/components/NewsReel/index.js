@@ -7,24 +7,28 @@ const NewsReel = () => {
   const wordRand = useSelector((state) => state.wordRand);
   const { loading, error, word, author } = wordRand;
 
-    useEffect(() => {
-      dispatch(getRandWord());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(getRandWord());
+  }, [dispatch]);
 
-    console.log(word);
-  
+  console.log(word);
+
   return (
     <>
       <div className="px-4 py-3 bg-gradient-pink-orange text-white">
-        <p className="text-xs font-semibold text-center">
+        <p className="flex text-xs font-semibold text-center justify-center items-center">
           {loading ? (
-                <>Loading...</>
-              ) : error ? (
-                `"Know your enemy and know yourself and you can fight a hundred battles without disaster" - Sun Tzu`
-              ) : (
-          `"${word.words}" - ${author}`
+            <>
+              <div
+                style={{ borderTopColor: "transparent" }}
+                className="w-3 h-3 border-2 border-white-900 border-solid rounded-full animate-spin"
+              ></div>
+            </>
+          ) : error ? (
+            `"Know your enemy and know yourself and you can fight a hundred battles without disaster" - Sun Tzu`
+          ) : (
+            `"${word.words}" - ${author}`
           )}
-            
         </p>
       </div>
     </>

@@ -5,17 +5,17 @@ import AudioPlayer from '../AudioNew/AudioPlayer'
 
 import { tracks } from '../../assets/data/tracks'
 
-const ModalAudio = ({ showModal, setShowModal }) => {
+const ModalAudio = ({ showModal, closeModal }) => {
 
-    let modal = document.getElementById("my-modal");
+    // let modal = document.getElementById("my-modal");
 
-    window.onclick = function(e) {
-      e.stopPropagation();
-        if (e.target == modal) {
-          setShowModal((prev) => !prev);
+    // window.onclick = function(e) {
+    //   e.stopPropagation();
+    //     if (e.target == modal) {
+    //       setShowModal((prev) => !prev);
           
-        }
-      }
+    //     }
+    //   }
 
     // const closeModal = (e) => {
     //     e.stopPropagation();
@@ -30,10 +30,10 @@ const ModalAudio = ({ showModal, setShowModal }) => {
         className="main-modal fixed w-full h-full inset-0 z-20 flex justify-center items-center2 animated fadeIn faster overflow-y-auto"
         style={{ background: `rgba(12,15,19,.9)` }}
         id="my-modal"
-        // onClick={closeModal}
+        
       >
         <div className="fixed md:px-2 md:py-2 lg:px-2 lg:py-2 top-2 md:top-3 lg:top-3 xl:top-3 left-2">
-          <button className="h-8 w-8" >
+          <button className="h-8 w-8" onClick={() => closeModal(false)}>
             <svg
               className="h-6 w-6 md:h-8 md:w-8 lg:h-8 lg:w-8 md:text-white lg:text-white font-bold"
               xmlns="http://www.w3.org/2000/svg"
