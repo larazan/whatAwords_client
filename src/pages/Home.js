@@ -43,12 +43,12 @@ const Home = ({ match }) => {
       <main>
         <Filter />
 
-        <div className="px-8 z-9 md:container md:mx-auto md:px-8">
+        <div className="px-4 z-9 md:container md:mx-auto md:px-4">
           <Tags />
 
           <Count page={pageNumber} results={results} count={count} />
 
-          <div className="mt-5 mb-20 flex flex-wrap -m-4">
+          <div className="mt-5 mb-20 flex flex-wrap ">
             {loading ? (
               <SkeletonMasonry />
             ) : error ? (

@@ -16,10 +16,10 @@ const SearchBox = ({ position }) => {
 
   return (
     <>
-      <div className={`${position == 'navbar' ? 'hidden md:flex' : 'flex'} items-center relative w-full md:w-1/3 mx-auto text-gray-600 `}>
+      <div className={`${position == 'navbar' ? 'hidden md:flex' : 'flex'} items-center relative w-full md:w-1/2 mx-auto text-gray-600 `}>
         <form onSubmit={submitHandler} className="w-full">
           <input
-            className="bg-purple-white border border-gray-400 shadow2 md:rounded-full p-3 px-5 text-xs md:text-sm focus:outline-none w-full"
+            className="bg-purple-white border border-gray-4002 shadow2 md:rounded p-3 px-5 text-xs md:text-sm focus:outline-none w-full"
             type="text"
             onChange={(e) => setKeyword(e.target.value)}
             name="q"

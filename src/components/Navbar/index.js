@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/user_actions";
 import { getCategories } from "../../actions/category_actions";
+import { useOnClickOutside } from "../../hooks/useOnClickOutside";
+
 
 import SearchBox from "../SearchBox";
 import ModalLogin from "../ModalLogin";
@@ -34,6 +36,9 @@ const Navbar = () => {
     setShowDrop((prev) => !prev);
   };
 
+  const ref = useRef();
+  useOnClickOutside(ref, () => setShowCatDrop(false));
+
   const openCatDrop = () => {
     console.log("open drop");
     setShowCatDrop((prev) => !prev);
@@ -61,10 +66,10 @@ const Navbar = () => {
   return (
     <>
       <NewsReel />
-      <header className="z-10 sticky top-0 px-5 py-3 flex items-center justify-between bg-white shadow border-b">
+      <header className="z-10 sticky top-0 px-5 py-3 flex items-center justify-between bg-blue-500 shadow2 border-b2">
         {/* <div className="absolute inset-0 shadow-lg opacity-50"></div> */}
         <div className="flex inline-flex space-x-4">
-          <button className="h-8 w-8 md:hidden" onClick={catToggle}>
+          <button className="h-8 w-8 md:hidden text-white" onClick={catToggle}>
             <svg
               className="h-8 w-8"
               xmlns="http://www.w3.org/2000/svg"
@@ -94,20 +99,21 @@ const Navbar = () => {
         <div className="flex inline-flex space-x-8">
           <div className="flex items-center hidden md:flex">
             <button onClick={openCatDrop}>
-              <span className="text-sm font-semibold text-gray-800 uppercase ">
-                Browse Words
+              <span className="text-sm font-semibold text-white uppercase ">
+                Explore
               </span>
             </button>
             <div
+              ref={ref}
                 className={`sm:w-44 md:w-44 ${
                   showCatDrop === false ? "hidden" : ""
-                } top-14 md:top-16 right-50 absolute font-normal bg-white shadow-md rounded-md overflow-hidden border`}
+                } top-14 md:top-13 right-40 absolute font-normal bg-white shadow-md rounded border`}
               >
                 <div className="py-0">
-                  <ul className="flex-col font-sans items-center justify-center text-sm">
+                  <ul className="flex-col font-semilight items-center justify-center text-sm">
                   {categories.map((category, index) => (
                     <Link to={`/cat/${category.slug}`} onClick={openCatDrop}>
-                      <li className="sm:py-1 md:py-2 px-6 hover:bg-gray-200 text-md font-semibold capitalize" key={index}>
+                      <li className="sm:py-1 md:py-2 px-3 pl-6 hover:bg-gray-200 text-md font-semibold capitalize" key={index}>
                         <span>{category.name}</span>
                       </li>
                     </Link>
@@ -118,23 +124,26 @@ const Navbar = () => {
           </div>
           <div className="flex items-center hidden md:flex">
             <Link to="/authors">
-              <span className="text-sm font-semibold text-gray-800 uppercase ">
+              <span className="text-sm font-semibold text-white uppercase ">
                 Authors
               </span>
             </Link>
           </div>
 
-          <button className="h-8 w-8 hidden md:flex items-center">
-            <svg
-              className="h-8 w-8"
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM14 11a1 1 0 011 1v1h1a1 1 0 110 2h-1v1a1 1 0 11-2 0v-1h-1a1 1 0 110-2h1v-1a1 1 0 011-1z" />
+          {/* <button className="pr-4 hidden md:flex text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
-          </button>
+          </button> */}
+          
+          {/* <div className="flex items-center hidden md:flex">
+            
+              <span className="text-sm font-semibold text-gray-800 uppercase ">
+                Categories
+              </span>
+           
+          </div> */}
+          
           {userInfo ? (
             <>
               <button onClick={openDrop}>
@@ -250,21 +259,10 @@ const Navbar = () => {
               </div>
             </>
           ) : (
-            <button className="h-8 w-8 items-center" onClick={openModal}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-8 w-8 md:h-6 md:w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
-                />
-              </svg>
+            <button className="pr-4 hidden md:flex text-white" onClick={openModal}>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+  <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+</svg>
             </button>
           )}
         </div>

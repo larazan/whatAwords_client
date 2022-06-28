@@ -25,7 +25,7 @@ const Filter = () => {
   return (
     <>
       <div className="md:hidden">
-        <div className="flex items-center justify-between space-x-3 px-6 pt-4 pb-3 md:px-12 ">
+        <div className="flex items-center justify-between space-x-3 px-4 pt-4 pb-3 md:px-12 ">
           <SearchBox />
           <div>
             <button className="block h-6 w-6" onClick={toggleSide}>
@@ -49,7 +49,7 @@ const Filter = () => {
         </div>
         {/* category */}
         <div className="bg-gray-100 py-2 overflow-x-auto scrollbars-hidden">
-            <div className="px-8 text-sm inline-flex space-x-5 md:px-12">
+            <div className="px-4 text-sm inline-flex space-x-5 md:px-12">
             {categories.map((category, index) => (
               <Link to={`/cat/${category.slug}`}>
                 <div

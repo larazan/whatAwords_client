@@ -58,7 +58,7 @@ const Sidebar = ({ isSideOpen, toggleSide }) => {
                     {tags.map((tag, index) => (
                       <Link to={`/tags/${tag.slug}`}>
                         <a
-                          className="m-1 bg-gradient-jams hover:bg-gradient-pink-orange inline-flex items-center justify-center px-2 py-1 rounded-full text-white cursor-pointer font-sm"
+                          className="m-1 bg-gradient-jams2 hover:bg-gradient-pink-orange2 bg-gray-200 inline-flex items-center justify-center px-3 py-1 rounded-full border text-gray-500 cursor-pointer font-light"
                           key={index}
                         >
                           <span className="text-xs">{tag.name}</span>

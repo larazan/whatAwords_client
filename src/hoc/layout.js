@@ -15,7 +15,7 @@ class Layout extends Component {
                     {this.props.children}
                 </div>
                 <div id="snackbar-fixed-container" ></div>
-                <Footer/>
+                <Footer2 />
                 <ScrollToBottom />
                 <ScrollToTop />
             </div>

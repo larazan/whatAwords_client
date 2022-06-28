@@ -7,7 +7,7 @@ const UniPaginate = ({ page, results, url, params}) => {
             <div className="flex justify-center mb-20">
         {parseInt(page) - 1 === 0 ? null : (
         <Link to={parseInt(page) - 1 === 0 ? `/${url}/${params}` : `/${url}/${params}?page=${parseInt(page) - 1}`}>
-          <button className={`border border-green-500 text-green-500 block rounded-sm font-bold py-4 px-6 mr-2 flex items-center ${parseInt(page) - 1 === 0 ? `` : `hover:bg-green-500 hover:text-white`}`}>
+          <button className={`border border-blue-500 text-blue-500 block rounded-sm font-bold py-4 px-6 mr-2 flex items-center ${parseInt(page) - 1 === 0 ? `` : `hover:bg-blue-500 hover:text-white`}`}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6 mr-1"
@@ -26,12 +26,12 @@ const UniPaginate = ({ page, results, url, params}) => {
           </button>
           </Link>
           )}
-          <button className="border border-green-500 bg-green-500 text-white block rounded-sm font-bold py-4 px-6  mr-2 flex items-center">
+          <button className="border border-blue-500 bg-blue-500 text-white block rounded-sm font-bold py-4 px-6  mr-2 flex items-center">
             {parseInt(page)}
           </button>
           {parseInt(results) < 50 ? null : (
           <Link to={`/${url}/${params}?page=${parseInt(page) + 1}`}>
-          <button className="border border-green-500 text-green-500 block rounded-sm font-bold py-4 px-6 mr-2 flex items-center hover:bg-green-500 hover:text-white">
+          <button className="border border-blue-500 text-blue-500 block rounded-sm font-bold py-4 px-6 mr-2 flex items-center hover:bg-blue-500 hover:text-white">
             Next page
             <svg
               xmlns="http://www.w3.org/2000/svg"

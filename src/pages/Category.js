@@ -50,7 +50,7 @@ const Category = ({ match }) => {
           </div>
         </div>
 
-        <div className="px-8 z-9 md:container md:mx-auto md:px-8">
+        <div className="px-8 z-9 md:container md:mx-auto md:px-4">
           <Tags />
 
           <div className="hidden md:flex mt-6 leading-none tracking-tight text-gray-900 ">
@@ -69,7 +69,7 @@ const Category = ({ match }) => {
             <>
               <Count page={page} results={results} count={count} />
 
-              <div className="mt-5 mb-20 flex flex-wrap -m-4 ">
+              <div className="mt-5 mb-20 flex flex-wrap ">
                 {loading ? (
                   <SkeletonMasonry />
                 ) : error ? (

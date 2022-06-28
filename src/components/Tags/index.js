@@ -18,10 +18,10 @@ const Tags = () => {
 
   return (
     <>
-      <div className="hidden lg:block ">
+      <div className="hidden md:block">
         <div className="flex items-center justify-between pt-4 ">
           <div className="top-0 py-3 flex overflow-x-auto scrollbars-hidden">
-            <div className="flex inline-flex justify-center space-x-4">
+            <div className="flex inline-flex justify-center space-x-2">
               {loading ? (
                 <h3>Loading...</h3>
               ) : error ? (
@@ -31,10 +31,10 @@ const Tags = () => {
                   {tags.map((tag, index) => (
                     <Link to={`/tags/${tag.slug}`}>
                       <a
-                        className="bg-gradient-jams hover:bg-gradient-pink-orange items-center justify-center px-4 py-2 rounded-full text-white cursor-pointer font-light"
+                        className="bg-gradient-jams2 hover:bg-gradient-pink-orange2 bg-gray-200 items-center justify-center px-4 py-2 rounded-full text-gray-600 cursor-pointer font-light"
                         key={index}
                       >
-                        <span className="text-sm">{tag.name}</span>
+                        <span className="text-xs">{tag.name}</span>
                       </a>
                     </Link>
                   ))}

@@ -349,7 +349,7 @@ const Modal = () => {
                 <div className="flex w-full2 space-x-2 justify-between md:justify-end lg:justify-end">
                   {userInfo ? (
                     <div
-                      className="bg-white px-3 py-1 font-extralight text-gray-500 border-2 border-gray-400 inline-flex items-center space-x-2 rounded hover:border-gray-600 hover:text-gray-800"
+                      className="bg-white px-3 py-1 font-extralight text-gray-500 border border-gray-300 inline-flex items-center space-x-2 rounded-sm hover:border-gray-600 hover:text-gray-800 cursor-pointer"
                       onClick={likeHandler}
                       title="Like Quote"
                     >
@@ -387,7 +387,7 @@ const Modal = () => {
                     </div>
                   ) : (
                     <div
-                      className="bg-white px-3 py-1 font-extralight text-gray-500 border-2 border-gray-400 inline-flex items-center space-x-2 rounded hover:border-gray-600 hover:text-gray-800"
+                      className="bg-white px-3 py-1 font-extralight text-gray-500 border border-gray-300 inline-flex items-center space-x-2 rounded-sm hover:border-gray-600 hover:text-gray-800 cursor-pointer"
                       onClick={openModalLogin}
                       title="Like Quote"
                     >
@@ -409,7 +409,7 @@ const Modal = () => {
 
                   {userInfo ? (
                     <div
-                      className="bg-white px-3 py-2 font-extralight text-gray-500 border-2 border-gray-400 inline-flex items-center space-x-2 rounded hover:border-gray-600 hover:text-gray-800"
+                      className="bg-white px-3 py-2 font-extralight text-gray-500 border-1 border-gray-300 inline-flex items-center space-x-2 rounded-sm hover:border-gray-600 hover:text-gray-800 cursor-pointer"
                       onClick={collectHandler}
                       title="Add to collection"
                     >
@@ -445,7 +445,7 @@ const Modal = () => {
                     </div>
                   ) : (
                     <div
-                      className="bg-white px-3 py-2 font-extralight text-gray-500 border-2 border-gray-400 inline-flex items-center space-x-2 rounded hover:border-gray-600 hover:text-gray-800"
+                      className="bg-white px-3 py-2 font-extralight text-gray-500 border border-gray-300 inline-flex items-center space-x-2 rounded-sm hover:border-gray-600 hover:text-gray-800 cursor-pointer"
                       onClick={openModalLogin}
                       title="Add to collection"
                     >
@@ -466,7 +466,7 @@ const Modal = () => {
                   )}
                   <CopyToClipboard text={word.words} onCopy={onCopyText}>
                     <div
-                      className="bg-white px-3 py-2 font-extralight text-gray-500 border-2 border-gray-400 inline-flex items-center space-x-2 rounded hover:border-gray-600 hover:text-gray-800"
+                      className="bg-white px-3 py-2 font-extralight text-gray-500 border border-gray-300 inline-flex items-center space-x-2 rounded-sm hover:border-gray-600 hover:text-gray-800 cursor-pointer"
                       title="Copy to clipboard"
                     >
                       <svg

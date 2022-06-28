@@ -29,6 +29,7 @@ import BlogDetail from './pages/BlogDetail';
 import Player from './pages/Player';
 import Audio from './pages/Audio';
 import CardAudio from './components/CardAudio';
+import Riddle from './pages/Riddle';
 
 const Routes = () => {
     const location = useLocation();
@@ -53,6 +54,7 @@ const Routes = () => {
                 <Route path="/player" exact component={Player} />
                 <Route path="/audio" exact component={Audio} />
                 <Route path="/cardaudio" exact component={CardAudio} />
+                <Route path="/riddle" exact component={Riddle} />
 
                 <Route path="/change_password" exact component={ChangePassword} />
                 <Route path="/detail/:id" exact component={Detail} />
@@ -63,7 +65,6 @@ const Routes = () => {
                 <ProtectedRoute path="/:id/collections" exact component={Collection} />
                 <ProtectedRoute path="/:id/followers" exact component={Follower} />
                 <ProtectedRoute path="/:id/following" exact component={Following} />
-
                 
             </Switch>
 
