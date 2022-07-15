@@ -17,6 +17,8 @@ import Avatar from "react-avatar";
 import Message from "../Message";
 import ModalLogin from "../ModalLogin";
 
+import FooterContent from "../FooterContent";
+
 import { showSuccessMessage, showErrorMessage } from "../utils/helpers";
 import { fontFamilies } from "../../assets/data/fontFamilies";
 import { gradients } from "../../assets/data/gradients";
@@ -31,8 +33,49 @@ const Modal = () => {
   const [collected, setCollected] = useState(false);
   const [follower, setFollower] = useState(0);
   const [followed, setFollowed] = useState(false);
-
+  const [size, setSize] = useState(0);
+  const [align, setAlign] = useState(0);
+  const [font, setFont] = useState(0);
+  const [color, setColor] = useState(0);
   
+  const sizes = ['xs', 'sm', 'base', 'lg', '2xl', '3xl', '4xl', '5xl']
+  const aligns = ['left', 'center', 'right', 'justify']
+
+  const sizeHandler = () => {
+    console.log('size klik');
+    if (size < sizes.length - 1) {
+      setSize(size+1)
+    } else {
+      setSize(0)
+    }
+  }
+
+  const alignHandler = () => {
+    console.log('align klik');
+    if (align < aligns.length - 1) {
+      setAlign(align+1)
+    } else {
+      setAlign(0)
+    }
+  }
+
+  const fontHandler = () => {
+    console.log('font klik');
+    if (font < fontFamilies.length - 1) {
+      setFont(font+1)
+    } else {
+      setFont(0)
+    }
+  }
+
+  const colorHandler = () => {
+    console.log('color klik');
+    if (color < gradients.length - 1) {
+      setColor(color+1)
+    } else {
+      setColor(0)
+    }
+  }
 
   const dispatch = useDispatch();
   const wordList = useSelector((state) => state.wordList);
@@ -215,7 +258,7 @@ const Modal = () => {
   return (
     <>
       <div
-        className="main-modal fixed w-full h-full inset-0 z-20 flex justify-center items-center2 animated fadeIn faster overflow-y-auto"
+        className="main-modal2 fixed w-full inset-0 z-20 flex justify-center items-center2 animated fadeIn faster overflow-y-auto"
         style={{ background: `rgba(12,15,19,.9)` }}
         // onClick={closeModal}
         id="my-modal"
@@ -330,7 +373,11 @@ const Modal = () => {
                   <div className="relative py-3 left-0  space-x-2">
                     {userInfo ? (
                       <div
-                        className={` px-4 py-2 font-semibold ${followed ? 'text-white bg-blue-500' : 'text-blue-500 bg-white border border-blue-500'}  inline-flex items-center space-x-2 rounded`}
+                        className={` px-4 py-2 font-semibold ${
+                          followed
+                            ? "text-white bg-blue-500"
+                            : "text-blue-500 bg-white border border-blue-500"
+                        }  inline-flex items-center space-x-2 rounded`}
                         onClick={followHandler}
                       >
                         <span>{followed ? "Following" : "Follow"}</span>
@@ -499,17 +546,18 @@ const Modal = () => {
                     {/*  */}
                     <div className="p-4 cursor-pointer">
                       <div
-                        className={`flex rounded-lg w-full h-3/6 ${randomGrad()} p-10 md:p-12 lg:p-16 flex-col`}
+                        className={`flex rounded-lg w-full h-3/6 ${gradients[color]['tail']} p-10 md:p-12 lg:p-16 flex-col`}
                         id="target-donlot"
                       >
                         <div className="flex-grow w-full">
                           <p
-                            className="leading-relaxed text-base text-black text-center sm:text-2xl md:text-3xl lg:text-4xl"
-                            style={{ fontFamily: `${randomFamily()}` }}
+                            className={`leading-relaxed text-${aligns[align]} text-${sizes[size]}`}
+                            // style={{ fontFamily: `${randomFamily()}` }}
+                            style={{ fontFamily: `${fontFamilies[font]}` }}
                           >
                             {word.words}
                           </p>
-                          {authorName !== 'admin' && (
+                          {authorName !== "admin" && (
                             <span className="px-4 pt-5 text-sm text-black float-right">
                               - {authorName}
                             </span>
@@ -517,7 +565,7 @@ const Modal = () => {
                           {word.answer && (
                             <div className="px-0 md:px-2 lg:px-4 pt-4 text-xs font-sans md:text-sm lg:text-sm text-black text-center">
                               <div className="font-semibold">Answer:</div>
-                            <span>{word.answer}</span>
+                              <span>{word.answer}</span>
                             </div>
                           )}
                         </div>
@@ -660,10 +708,15 @@ const Modal = () => {
               </div>
             </>
           )}
+         
         </div>
+        <FooterContent sizeHandler={sizeHandler} alignHandler={alignHandler} fontHandler={fontHandler} colorHandler={colorHandler} />
       </div>
 
-      <ModalLogin showModalLogin={showModalLogin} setShowModalLogin={setShowModalLogin} />
+      <ModalLogin
+        showModalLogin={showModalLogin}
+        setShowModalLogin={setShowModalLogin}
+      />
     </>
   );
 };
