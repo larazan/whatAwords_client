@@ -48,6 +48,18 @@ import {
     WORD_RANDOM_REQUEST,
     WORD_RANDOM_SUCCESS,
     WORD_RANDOM_FAIL,
+    WORDS_BY_RIDDLE_REQUEST,
+    WORDS_BY_RIDDLE_SUCCESS,
+    WORDS_BY_RIDDLE_FAIL,
+    WORD_RIDDLE_REQUEST,
+    WORD_RIDDLE_SUCCESS,
+    WORD_RIDDLE_FAIL,
+    WORD_RIDDLE_NEXT_REQUEST,
+    WORD_RIDDLE_NEXT_SUCCESS,
+    WORD_RIDDLE_NEXT_FAIL,
+    WORD_RIDDLE_PREV_REQUEST,
+    WORD_RIDDLE_PREV_SUCCESS,
+    WORD_RIDDLE_PREV_FAIL,
 } from './types';
 import { logout } from './user_actions'
 
@@ -466,5 +478,81 @@ export const getRandWord = () => async (dispatch) => {
             payload: error.response && error.response.data.message
             ? error.response.data.message : error.message,
         })
+    }
+}
+
+export const getRiddles = () => async (dispatch) => {
+    try {
+        dispatch({ type: WORDS_BY_RIDDLE_REQUEST });
+
+        const { data } = await axios.get(`${WORDS_SERVER}/riddle/random`)
+
+        dispatch ({
+            type: WORDS_BY_RIDDLE_SUCCESS,
+            payload: data
+        })
+    } catch (error) {
+        dispatch({
+            type: WORDS_BY_RIDDLE_FAIL,
+            payload: error.response && error.response.data.message
+            ? error.response.data.message : error.message,
+        })
+    }
+}
+
+export const getRiddle = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: WORD_RIDDLE_REQUEST })
+
+        const { data } = await axios.get(`${WORDS_SERVER}/riddle/${id}`)
+
+        dispatch({
+            type: WORD_RIDDLE_SUCCESS,
+            payload: data
+        })
+    } catch (error) {
+        dispatch({
+            type: WORD_RIDDLE_FAIL,
+            payload: error.response && error.response.data.message
+                ? error.response.data.message : error.message,
+          })
+    }
+}
+
+export const getRiddleNext = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: WORD_RIDDLE_NEXT_REQUEST })
+
+        const { data } = await axios.get(`${WORDS_SERVER}/riddle/next/${id}`)
+
+        dispatch({
+            type: WORD_RIDDLE_NEXT_SUCCESS,
+            payload: data
+        })
+    } catch (error) {
+        dispatch({
+            type: WORD_RIDDLE_NEXT_FAIL,
+            payload: error.response && error.response.data.message
+                ? error.response.data.message : error.message,
+          })
+    }
+}
+
+export const getRiddlePrev = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: WORD_RIDDLE_PREV_REQUEST })
+
+        const { data } = await axios.get(`${WORDS_SERVER}/riddle/prev/${id}`)
+
+        dispatch({
+            type: WORD_RIDDLE_PREV_SUCCESS,
+            payload: data
+        })
+    } catch (error) {
+        dispatch({
+            type: WORD_RIDDLE_PREV_FAIL,
+            payload: error.response && error.response.data.message
+                ? error.response.data.message : error.message,
+          })
     }
 }

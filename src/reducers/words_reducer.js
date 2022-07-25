@@ -49,6 +49,18 @@ import {
     WORD_RANDOM_REQUEST,
     WORD_RANDOM_SUCCESS,
     WORD_RANDOM_FAIL,
+    WORDS_BY_RIDDLE_REQUEST,
+    WORDS_BY_RIDDLE_SUCCESS,
+    WORDS_BY_RIDDLE_FAIL,
+    WORD_RIDDLE_REQUEST,
+    WORD_RIDDLE_SUCCESS,
+    WORD_RIDDLE_FAIL,
+    WORD_RIDDLE_NEXT_REQUEST,
+    WORD_RIDDLE_NEXT_SUCCESS,
+    WORD_RIDDLE_NEXT_FAIL,
+    WORD_RIDDLE_PREV_REQUEST,
+    WORD_RIDDLE_PREV_SUCCESS,
+    WORD_RIDDLE_PREV_FAIL,
 } from '../actions/types'
 
 export const wordsSearchReducer = (state = { words: [] }, action) => {
@@ -316,6 +328,72 @@ export const wordRandReducer = (state = { word: [] }, action) => {
         return { loading: false, error: action.payload }
     default:
         return state;
+  }
+}
+
+export const wordsRiddleReducer = (state = { words: [] }, action) => {
+  switch (action.type) {
+    case WORDS_BY_RIDDLE_REQUEST:
+        return { loading: true, words: [] }
+    case WORDS_BY_RIDDLE_SUCCESS:
+        return { 
+          loading: false, 
+          words: action.payload.words,
+        }    
+    case WORDS_BY_RIDDLE_FAIL:
+        return { loading: false, error: action.payload }
+    default:
+        return state;
+  }
+}
+
+export const wordRiddleReducer = (state = { word: [] }, action) => {
+  switch (action.type) {
+      case WORD_RIDDLE_REQUEST:
+          return { ...state, loading: true }
+      case WORD_RIDDLE_SUCCESS:
+          return { 
+            loading: false, 
+            word: action.payload.word, 
+          }    
+      case WORD_RIDDLE_FAIL:
+          return { loading: false, error: action.payload }    
+      default:
+          return state;
+  }
+}
+
+export const wordRiddleNextReducer = (state = { word: [], idNext: '' }, action) => {
+  switch (action.type) {
+      case WORD_RIDDLE_NEXT_REQUEST:
+          return { ...state, loading: true }
+      case WORD_RIDDLE_NEXT_SUCCESS:
+          return { 
+            loading: false, 
+            word: action.payload.word, 
+            idNext: action.payload.idNext, 
+          }    
+      case WORD_RIDDLE_NEXT_FAIL:
+          return { loading: false, error: action.payload }    
+      default:
+          return state;
+  }
+}
+
+export const wordRiddlePrevReducer = (state = { word: [], idPrev: '' }, action) => {
+  switch (action.type) {
+      case WORD_RIDDLE_PREV_REQUEST:
+          return { ...state, loading: true }
+      case WORD_RIDDLE_PREV_SUCCESS:
+          return { 
+            loading: false, 
+            word: action.payload.word, 
+            idPrev: action.payload.idPrev, 
+          }    
+      case WORD_RIDDLE_PREV_FAIL:
+          return { loading: false, error: action.payload }    
+      default:
+          return state;
   }
 }
 

@@ -759,3 +759,49 @@ background-position: 100% 50%
 background-position: 0% 50%
 }
 }
+
+.navbar, .tombol {
+  background-color: #0065be;
+}
+
+.riddle {
+  background-color: #0074d9;
+}
+
+.answer {
+  color: #ffdc00;
+}
+
+#matrix-cntnr {
+  display: none;
+  position: fixed;
+  bottom: 3rem;
+  right: 0.5rem;
+  z-index: 1;
+}
+
+#matrix-cntnr.showing {
+  display: block;
+}
+
+#matrix {
+  border-collapse: separate;
+  border-spacing: 2px;
+}
+
+#matrix td {
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+#matrix td:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+#matrix td.active {
+  background: #fff;
+}

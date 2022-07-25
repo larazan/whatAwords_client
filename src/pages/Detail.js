@@ -15,6 +15,7 @@ import Avatar from 'react-avatar';
 
 import Message from "../components/Message";
 import ModalLogin from "../components/ModalLogin";
+import FooterContent from "../components/FooterContent";
 
 import { showSuccessMessage, showErrorMessage } from '../components/utils/helpers';
 import { fontFamilies } from '../assets/data/fontFamilies';
@@ -28,6 +29,55 @@ const Detail = ({ match }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [collected, setCollected] = useState(false);
   const [followed, setFollowed] = useState(false);
+  const [size, setSize] = useState(0);
+  const [align, setAlign] = useState(0);
+  const [font, setFont] = useState(0);
+  const [background, setBackground] = useState(0);
+  const [color, setColor] = useState(false);
+
+  const sizes = ['xs', 'sm', 'base', 'lg', '2xl', '3xl', '4xl', '5xl']
+  const aligns = ['left', 'center', 'right', 'justify']
+
+  const sizeHandler = () => {
+    console.log('size klik');
+    if (size < sizes.length - 1) {
+      setSize(size+1)
+    } else {
+      setSize(0)
+    }
+  }
+
+  const alignHandler = () => {
+    console.log('align klik');
+    if (align < aligns.length - 1) {
+      setAlign(align+1)
+    } else {
+      setAlign(0)
+    }
+  }
+
+  const fontHandler = () => {
+    console.log('font klik');
+    if (font < fontFamilies.length - 1) {
+      setFont(font+1)
+    } else {
+      setFont(0)
+    }
+  }
+
+  const backgroundHandler = () => {
+    console.log('background klik');
+    if (background < gradients.length - 1) {
+      setBackground(background+1)
+    } else {
+      setBackground(0)
+    }
+  }
+
+  const colorHandler = () => {
+    console.log('color klik');
+      setColor((prev) => !prev)
+  }
 
   const wordList = useSelector((state) => state.wordList);
   const dispatch = useDispatch();
@@ -325,18 +375,19 @@ const Detail = ({ match }) => {
                 <div className="w-2/3 md:w-3/4 lg:w-1/2 flex items-center justify-center">
                   {/*  */}
                   <div className="p-4 cursor-pointer">
-                    <div
-                      className={`flex rounded-lg w-full h-3/6 ${randomGrad()} p-10 md:p-12 lg:p-16 flex-col`}
-                      id="target-donlot"
-                    >
-                      <div className="flex-grow w-full">
-                        <p
-                          className="leading-relaxed text-base text-black text-center sm:text-2xl md:text-3xl lg:text-4xl"
-                          style={{ fontFamily: `${randomFamily()}` }}
-                        >
+                  <div
+                        className={`flex rounded-lg w-full h-3/6 ${gradients[background]['tail']} p-10 md:p-12 lg:p-16 flex-col`}
+                        id="target-donlot"
+                      >
+                        <div className="flex-grow w-full">
+                          <p
+                            className={`leading-relaxed text-${aligns[align]} text-${sizes[size]} text-${color === false ? 'black' : 'white' }`}
+                            // style={{ fontFamily: `${randomFamily()}` }}
+                            style={{ fontFamily: `${fontFamilies[font]}` }}
+                          >
                           {word.words}
                         </p>
-                        <span className="px-4 pt-5 text-sm text-black float-right">
+                        <span className={`px-4 pt-5 text-sm text-${color === false ? 'black' : 'white' } float-right`}>
                           - {authorName}
                         </span>
                       </div>
@@ -480,6 +531,7 @@ const Detail = ({ match }) => {
             </div>
           </>
         )}
+        <FooterContent sizeHandler={sizeHandler} alignHandler={alignHandler} fontHandler={fontHandler} backgroundHandler={backgroundHandler} colorHandler={colorHandler} />
       </div>
 
       <ModalLogin showModal={showModal} setShowModal={setShowModal} />

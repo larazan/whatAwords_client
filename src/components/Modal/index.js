@@ -36,7 +36,8 @@ const Modal = () => {
   const [size, setSize] = useState(0);
   const [align, setAlign] = useState(0);
   const [font, setFont] = useState(0);
-  const [color, setColor] = useState(0);
+  const [background, setBackground] = useState(0);
+  const [color, setColor] = useState(false);
   
   const sizes = ['xs', 'sm', 'base', 'lg', '2xl', '3xl', '4xl', '5xl']
   const aligns = ['left', 'center', 'right', 'justify']
@@ -68,13 +69,18 @@ const Modal = () => {
     }
   }
 
+  const backgroundHandler = () => {
+    console.log('background klik');
+    if (background < gradients.length - 1) {
+      setBackground(background+1)
+    } else {
+      setBackground(0)
+    }
+  }
+
   const colorHandler = () => {
     console.log('color klik');
-    if (color < gradients.length - 1) {
-      setColor(color+1)
-    } else {
-      setColor(0)
-    }
+      setColor((prev) => !prev)
   }
 
   const dispatch = useDispatch();
@@ -546,19 +552,19 @@ const Modal = () => {
                     {/*  */}
                     <div className="p-4 cursor-pointer">
                       <div
-                        className={`flex rounded-lg w-full h-3/6 ${gradients[color]['tail']} p-10 md:p-12 lg:p-16 flex-col`}
+                        className={`flex rounded-lg w-full h-3/6 ${gradients[background]['tail']} p-10 md:p-12 lg:p-16 flex-col`}
                         id="target-donlot"
                       >
                         <div className="flex-grow w-full">
                           <p
-                            className={`leading-relaxed text-${aligns[align]} text-${sizes[size]}`}
+                            className={`leading-relaxed text-${aligns[align]} text-${sizes[size]} text-${color === false ? 'black' : 'white' }`}
                             // style={{ fontFamily: `${randomFamily()}` }}
                             style={{ fontFamily: `${fontFamilies[font]}` }}
                           >
                             {word.words}
                           </p>
                           {authorName !== "admin" && (
-                            <span className="px-4 pt-5 text-sm text-black float-right">
+                            <span className={`px-4 pt-5 text-sm text-${color === false ? 'black' : 'white' } float-right`}>
                               - {authorName}
                             </span>
                           )}
@@ -710,7 +716,7 @@ const Modal = () => {
           )}
          
         </div>
-        <FooterContent sizeHandler={sizeHandler} alignHandler={alignHandler} fontHandler={fontHandler} colorHandler={colorHandler} />
+        <FooterContent sizeHandler={sizeHandler} alignHandler={alignHandler} fontHandler={fontHandler} backgroundHandler={backgroundHandler} colorHandler={colorHandler} />
       </div>
 
       <ModalLogin

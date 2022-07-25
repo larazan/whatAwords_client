@@ -39,6 +39,10 @@ import {
   wordCollectReducer,
   wordsByUserReducer,
   wordRandReducer,
+  wordsRiddleReducer,
+  wordRiddleReducer,
+  wordRiddleNextReducer,
+  wordRiddlePrevReducer
 } from './reducers/words_reducer'
 
 import {
@@ -107,6 +111,10 @@ const reducer = combineReducers({
   wordCollect: wordCollectReducer,
   wordsByUser: wordsByUserReducer,
   wordRand: wordRandReducer,
+  wordsRiddle: wordsRiddleReducer,
+  wordRiddle: wordRiddleReducer,
+  wordRiddleNext: wordRiddleNextReducer,
+  wordRiddlePrev: wordRiddlePrevReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,

@@ -26,6 +26,10 @@ const CardMasonry = ({ contents }) => {
     500: 1,
   };
 
+  const truncate = (str, noWord) => {
+    return str.split(" ").splice(0,noWord).join(" ");
+  }
+
   return (
     <>
       <Masonry
@@ -41,9 +45,8 @@ const CardMasonry = ({ contents }) => {
             >
               <Link
                 to={{
-                  pathname: `/detail/${content._id}`,
-                  state: { background: location },
-                  // pathname: `/detail/${content._id}`,
+                  pathname: `${content.category === '6199f8067f44992140ebdd00' ? '/riddle/' : '/detail/'+content._id }`,
+                  search: `${content.category === '6199f8067f44992140ebdd00' ? `id=${content._id}&x=0&y=0`: null}`,
                 }}
                 className="cursor-zoom-in"
               >
@@ -77,12 +80,13 @@ const CardMasonry = ({ contents }) => {
               }}
               className="cursor-zoom-in"
             >
+              {content.author && (
               <div class="overlay absolute rounded-b bottom-0 h-full w-full px-4 pt-3 opacity-0 hover:opacity-100">
                 <div class="absolute top-0 left-0 px-5 py-4">
                   <button class=" flex justify-between space-x-6 md:space-x-2">
                     <div class="flex space-x-2 ">
                       <Avatar
-                        name={content.author.name}
+                        name={truncate(content.author.name, 2)}
                         size="30"
                         round={true}
                         className="flex items-center justify-center shadow-xl rounded-full w-12 h-12 align-middle border-none sm:w-20 lg:w-60"
@@ -147,6 +151,7 @@ const CardMasonry = ({ contents }) => {
                   </div>
                 </div>
               </div>
+               )}
             </Link>
           </div>
         ))}

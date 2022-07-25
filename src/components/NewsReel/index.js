@@ -15,7 +15,7 @@ const NewsReel = () => {
 
   return (
     <>
-      <div className="px-4 py-3 bg-gradient-pink-orange text-white">
+      <div className="px-4 py-3 bg-gradient-pink-orange text-white" id="reel">
         <p className="flex text-xs font-semibold text-center justify-center items-center">
           {loading ? (
             <>

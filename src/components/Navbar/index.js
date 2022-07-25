@@ -12,6 +12,7 @@ import Menu from "../Menu";
 import NewsReel from "../NewsReel";
 
 import imgLogo from "../../assets/Fraspi-preview.png";
+import logo from "../../assets/logo.png";
 
 const Navbar = () => {
   const [showDrop, setShowDrop] = useState(false);
@@ -66,7 +67,7 @@ const Navbar = () => {
   return (
     <>
       <NewsReel />
-      <header className="z-10 sticky top-0 px-5 py-3 flex items-center justify-between bg-blue-500 shadow2 border-b2">
+      <header className="navbar z-10 sticky top-0 px-5 py-3 flex items-center justify-between shadow2 border-b2" id="header">
         {/* <div className="absolute inset-0 shadow-lg opacity-50"></div> */}
         <div className="flex inline-flex space-x-4">
           <button className="h-8 w-8 md:hidden text-white" onClick={catToggle}>
@@ -89,7 +90,7 @@ const Navbar = () => {
             <Link to="/">
               <div className="text-sm font-semibold text-gray-800 uppercase font-semibold">
                 <div>
-                  <img className="h-12" src={imgLogo} alt="Allbirds" />
+                  <img className="h-12" src={logo} alt="Allbirds" />
                 </div>
               </div>
             </Link>

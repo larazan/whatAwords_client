@@ -11,6 +11,8 @@
     "html-to-image": "^1.9.0",
     "http-proxy-middleware": "^2.0.1",
     "millify": "^4.0.0",
+    "qs": "^6.11.0",
+    "qs-stringify": "^1.2.1",
     "react": "^17.0.2",
     "react-avatar": "^4.0.0",
     "react-copy-to-clipboard": "^5.0.4",
