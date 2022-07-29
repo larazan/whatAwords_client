@@ -54,7 +54,7 @@ const Routes = () => {
                 <Route path="/player" exact component={Player} />
                 <Route path="/audio" exact component={Audio} />
                 <Route path="/cardaudio" exact component={CardAudio} />
-                <Route path="/riddle" exact component={Riddle} />
+                <Route path="/riddle/:id?" exact component={Riddle} />
 
                 <Route path="/change_password" exact component={ChangePassword} />
                 <Route path="/detail/:id" exact component={Detail} />

@@ -45,8 +45,8 @@ const CardMasonry = ({ contents }) => {
             >
               <Link
                 to={{
-                  pathname: `${content.category === '6199f8067f44992140ebdd00' ? '/riddle/' : '/detail/'+content._id }`,
-                  search: `${content.category === '6199f8067f44992140ebdd00' ? `id=${content._id}&x=0&y=0`: null}`,
+                  pathname: `${content.category === '6199f8067f44992140ebdd00' ? '/riddle/'+content._id : '/detail/'+content._id }`,
+                  // search: `${content.category === '6199f8067f44992140ebdd00' ? `id=${content._id}`: null}`,
                 }}
                 className="cursor-zoom-in"
               >

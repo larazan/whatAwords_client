@@ -363,14 +363,14 @@ export const wordRiddleReducer = (state = { word: [] }, action) => {
   }
 }
 
-export const wordRiddleNextReducer = (state = { word: [], idNext: '' }, action) => {
+export const wordRiddleNextReducer = (state = { wordNext: [], idNext: '' }, action) => {
   switch (action.type) {
       case WORD_RIDDLE_NEXT_REQUEST:
           return { ...state, loading: true }
       case WORD_RIDDLE_NEXT_SUCCESS:
           return { 
             loading: false, 
-            word: action.payload.word, 
+            wordNext: action.payload.word, 
             idNext: action.payload.idNext, 
           }    
       case WORD_RIDDLE_NEXT_FAIL:
@@ -380,14 +380,14 @@ export const wordRiddleNextReducer = (state = { word: [], idNext: '' }, action) 
   }
 }
 
-export const wordRiddlePrevReducer = (state = { word: [], idPrev: '' }, action) => {
+export const wordRiddlePrevReducer = (state = { wordPrev: [], idPrev: '' }, action) => {
   switch (action.type) {
       case WORD_RIDDLE_PREV_REQUEST:
           return { ...state, loading: true }
       case WORD_RIDDLE_PREV_SUCCESS:
           return { 
             loading: false, 
-            word: action.payload.word, 
+            wordPrev: action.payload.word, 
             idPrev: action.payload.idPrev, 
           }    
       case WORD_RIDDLE_PREV_FAIL:

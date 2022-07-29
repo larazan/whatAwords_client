@@ -1,91 +1,107 @@
 import React, { useState } from 'react'
-
-import Matrix from '../Matrix'
+import { Link } from 'react-router-dom'
+// import Matrix from '../Matrix'
 
 const Nav = ({
-    pos,
-    onClick,
+    next,
+    prev,
+    riddId,
+    // onClick,
     toggleAnswer,
-    updatePosition
+    // updatePosition
 }) => {
-    const [showMatrix, setShowMatrix] = useState(false)
+    // const [showMatrix, setShowMatrix] = useState(false)
 
     const arrows = [
       {
         arrow: "left",
-        svg: "M20 1 L24 5 L14 16 L24 27 L20 31 L6 16 z",
+        svg: "M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z",
+        url: prev
       },
-      {
-        arrow: "down",
-        svg: "M1 12 L16 26 L31 12 L27 8 L16 18 L5 8 z",
-      },
-      {
-        arrow: "up",
-        svg: "M1 20 L16 6 L31 20 L27 24 L16 14 L5 24 z",
-      },
+      // {
+      //   arrow: "down",
+      //   svg: "M1 12 L16 26 L31 12 L27 8 L16 18 L5 8 z",
+      // },
+      // {
+      //   arrow: "up",
+      //   svg: "M1 20 L16 6 L31 20 L27 24 L16 14 L5 24 z",
+      // },
       {
         arrow: "right",
-        svg: "M12 1 L26 16 L12 31 L8 27 L18 16 L8 5 z",
+        svg: "M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z",
+        url: next
       },
     ];
 
-    const clickHandler = (btn, e) => {
-        onClick(btn)
-    }
+    // const clickHandler = (btn, e) => {
+    //     onClick(btn)
+    // }
 
     const answerClick = () => {
         toggleAnswer()
     }
 
-    const matrixClick = () => {
-        setShowMatrix((prev) => !prev)
-    }
+    // const matrixClick = () => {
+    //     setShowMatrix((prev) => !prev)
+    // }
 
-    const movability = (pos) => {
-        var x = pos[0],
-            y = pos[1],
-            move = {up: true, down: true, left: true, right: true};
+    // const movability = (pos) => {
+    //     var x = pos[0],
+    //         y = pos[1],
+    //         move = {up: true, down: true, left: true, right: true};
 
-        if (x === 0) move.left = false;
-        if (x >= 12) move.right = false;
-        if (y === 0) move.up = false;
-        if (y >= 4 || (x === 12 && y === 0)) move.down = false;
+    //     if (x === 0) move.left = false;
+    //     if (x >= 12) move.right = false;
+    //     if (y === 0) move.up = false;
+    //     if (y >= 4 || (x === 12 && y === 0)) move.down = false;
 
-        return move;
-    }
+    //     return move;
+    // }
 
-    let move = movability(pos);
+    // let move = movability(pos);
 
   return (
     <>
         <div className="absolute riddle bottom-0 px-6 py-3 w-full ">
             <div className="">
-              <Matrix  
+              {/* <Matrix  
                 pos={pos}
                 updatePosition={updatePosition}
                 showing={showMatrix}
-              />
-              <div className="flex justify-around md:justify-end space-x-2 w-full items-center leading-none text-white text-base">
-                <button className="p-3 tombol" onClick={answerClick}>
+              /> */}
+              <div className="flex justify-end space-x-2 w-full items-center leading-none text-white text-base">
+                <button className="p-3 tombol hover:bg-blue-900" onClick={answerClick}>
                   <span className="font-semibold">Answer</span>
                 </button>
                 {arrows.map((a) => (
-                    <button 
-                        key={a.arrow}
-                        type="button"
-                        className="p-2 tombol"
-                        onClick={clickHandler(a.arrow)}
-                        disabled={!move[a.arrow]}
+                  <Link 
+                    to={{
+                      pathname: `${a.url === undefined ? '/riddle/'+riddId : '/riddle/'+a.url } `,
+                      // search: `id=${a.url}`
+                    }}
+                    key={a.arrow}
+                  > 
+                    <div 
+                        // key={a.arrow}
+                        // type="button"
+                        className={`p-2 tombol ${a.url === undefined ? '' : 'hover:bg-blue-900'} `}
+                        // onClick={clickHandler(a.arrow)}
+                        // disabled={!move[a.arrow]}
                     >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path d={a.svg}></path>
-                    </svg>
-                  </button>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path 
+                          d={a.svg}
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                        ></path>
+                      </svg>
+                    </div>
+                  </Link>
                 ))}
                 {/* <button className="p-2 tombol">
                   <svg
@@ -143,7 +159,7 @@ const Nav = ({
                     />
                   </svg>
                 </button> */}
-                <button className="p-2 tombol" onClick={matrixClick}>
+                {/* <button className="p-2 tombol" onClick={matrixClick}>
                   <svg
                     className="h-6 w-6"
                     data-icon="grid"
@@ -156,7 +172,7 @@ const Nav = ({
                       data-reactid=".0.3.1.3.0.0"
                     ></path>
                   </svg>
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
